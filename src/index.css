@@ -1,0 +1,312 @@
+@font-face {
+    font-family: "League Spartan";
+    src: url("./assets/fonts/LeagueSpartan-Bold.woff2") format("woff2");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "League Spartan";
+    src: url("./assets/fonts/LeagueSpartan-Medium.woff2") format("woff2");
+    font-weight: 500;
+}
+
+html {
+    background-color: var(--11);
+}
+
+:root {
+    --0: #ffffff;
+    --1: #7c5dfa;
+    --2: #9277ff;
+    --3: #1e2139;
+    --4: #252945;
+    --5: #dfe3fa;
+    --6: #888eb0;
+    --7: #7e88c3;
+    --8: #0c0e16;
+    --9: #ec5757;
+    --10: #ff9797;
+    --11: #f8f8fb;
+    --12: #141625;
+    --13: #f9fafe;
+    --14: #373b53;
+}
+
+* {
+    font-family: "League Spartan";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    display: block;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--8);
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.75px;
+    color: var(--8);
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    color: var(--8);
+}
+
+h4 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    color: var(--8);
+}
+
+p {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: var(--8);
+}
+
+span:not(.MuiButtonBase-root span) {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: var(--8);
+}
+
+.input,
+input {
+    width: 100%;
+}
+
+.MuiPaper-root,
+.MuiTypography-root,
+.MuiButtonBase-root,
+.css-innj4t-MuiPickersYear-yearButton {
+    font-family: "League Spartan", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+}
+
+.css-innj4t-MuiPickersYear-yearButton.Mui-selected,
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+    background-color: var(--1) !important;
+}
+
+.css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+    border: 1px solid var(--1) !important;
+}
+
+@media (pointer: fine) {
+    .css-1u23akw-MuiButtonBase-root-MuiPickersDay-root:not(
+            .Mui-selected
+        ):hover {
+        background-color: #7c5dfa0a !important;
+    }
+    .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected):hover {
+        background-color: #7c5dfa0a !important;
+    }
+    .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected):focus {
+        background-color: #7c5dfa0a !important;
+    }
+}
+
+.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button:hover {
+    background-color: #7c5dfa0a !important;
+}
+
+.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button:hover {
+    background-color: #7c5dfa0a !important;
+}
+
+.css-innj4t-MuiPickersYear-yearButton:not(.Mui-selected):hover {
+    background-color: #7c5dfa0a !important;
+}
+
+.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton:hover {
+    background-color: #7c5dfa0a !important;
+}
+
+.css-1vooibu-MuiSvgIcon-root {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.css-1vooibu-MuiSvgIcon-root,
+.css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
+    fill: #7c5dfa !important;
+}
+
+.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+    font-weight: 700 !important;
+    color: var(--8) !important;
+    line-height: normal !important;
+}
+
+.css-1k4oq0i-MuiPaper-root-MuiPickersPopper-paper {
+    box-shadow: 0 10px 20px 0 #48549f40 !important;
+    border-radius: 8px !important;
+    line-height: normal !important;
+}
+
+.css-jgls56-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+    background-color: #7c5dfa !important;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    font-family: "League Spartan" !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.25px !important;
+    height: auto !important;
+    line-height: normal !important;
+    padding: 16px 0 16px 20px !important;
+}
+
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: var(--5) !important;
+    border-radius: 4px !important;
+    caret-color: var(--1) !important;
+    color: var(--8) !important;
+    width: 100% !important;
+    padding: 16px 20px !important;
+    border-width: 1px !important;
+}
+
+.date-error {
+    border-color: var(--9) !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--5) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--2) !important;
+    border-width: 1px !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    color: var(--7) !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+    background-color: transparent !important;
+    color: var(--1) !important;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:not(.Mui-selected):hover {
+    background-color: #7c5dfabf !important;
+}
+
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected):focus {
+    background-color: #7c5dfa40 !important; /* Change this to your preferred ripple color */
+}
+
+.invoice-panel-input-5
+    .MuiButtonBase-root
+    .MuiTouchRipple-rippleVisible
+    .MuiTouchRipple-child {
+    background-color: #7c5dfabf !important; /* Change this to your preferred ripple color */
+}
+
+.MuiList-root .MuiMenuItem-root {
+    padding: 12px 16px;
+}
+
+.MuiList-root .MuiMenuItem-root:not(:last-child) {
+    border-bottom: 1px solid var(--5) !important;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+    padding: 0 !important;
+}
+
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    box-shadow: 0 0px 20px 0 #48549f40 !important;
+    border-radius: 8px !important;
+    color: var(--8) !important;
+}
+
+.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    color: var(--1) !important;
+    right: 5px !important;
+}
+
+.css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+    color: var(--1) !important;
+    right: 5px !important;
+}
+
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    /* color: var(--8) !important; */
+    font-family: "League Spartan" !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.25px !important;
+    line-height: normal !important;
+}
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    min-height: 0 !important;
+    padding: 16px 20px !important;
+    height: auto !important;
+}
+
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    color: var(--8) !important;
+}
+
+/* ----- Scrollbar Styles For Firefox ----- */
+.invoice-panel-parent {
+    scrollbar-color: var(--5) transparent;
+    scrollbar-width: thin;
+}
+
+.invoice-panel-parent::-moz-scrollbar {
+    width: 8px;
+}
+
+.invoice-panel-parent::-moz-scrollbar-thumb {
+    background-color: var(--5);
+    border-radius: 4px;
+}
+
+.invoice-panel-parent::-moz-scrollbar-track {
+    background-color: transparent;
+}
+
+/* ----- Scrollbar Styles For Other Browsers ----- */
+.invoice-panel-parent::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.invoice-panel-parent::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.invoice-panel-parent::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--5);
+}

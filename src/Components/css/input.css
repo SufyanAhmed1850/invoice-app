@@ -1,0 +1,47 @@
+.input input {
+    padding: 16px 20px;
+    border: none;
+    outline: 1px solid var(--5);
+    border-radius: 4px;
+    font-family: "League Spartan";
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    caret-color: var(--1);
+    color: var(--8);
+    width: 100%;
+}
+
+.input input:focus {
+    outline: 1px solid var(--2);
+    caret-color: var(--1);
+}
+
+.input input::placeholder {
+    font-family: "League Spartan";
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    opacity: 0.5;
+    color: var(--7);
+}
+
+.input .label-head {
+    padding-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.input-date .label-head {
+    padding-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.input input[type="text"]:disabled {
+    outline: none;
+    background-color: transparent;
+    color: var(--6);
+}

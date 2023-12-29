@@ -1,0 +1,39 @@
+.dialog-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00000080;
+    width: 100%;
+    height: 100svh;
+    animation: fadeInOut 0.3s ease;
+    z-index: 10000;
+}
+
+.dialog {
+    background-color: var(--0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 480px;
+    border-radius: 8px;
+    padding: 48px;
+}
+
+.dialog h2 {
+    line-height: 32px;
+}
+
+.dialog p {
+    color: var(--6);
+    line-height: 22px;
+}
+
+.dialog-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}

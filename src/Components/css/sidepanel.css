@@ -1,0 +1,45 @@
+.side-panel {
+    background-color: #373b53;
+    height: 100svh;
+    width: 104px;
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+}
+
+.side-panel-profile {
+    width: 104px;
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #494e6e;
+}
+
+.side-panel-profile img {
+    border-radius: 100%;
+}
+
+.side-panel-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+.side-panel-theme {
+    padding: 16px !important;
+}
+
+.side-panel-profile-icon {
+    padding: 10px !important;
+}
+
+.side-panel-theme span,
+.side-panel-profile-icon span {
+    color: #999999;
+}

@@ -1,0 +1,55 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+    align-items: safe center;
+    gap: 52px;
+    height: 100svh;
+    min-width: 476px;
+}
+
+.signup-card {
+    background-color: var(--0);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 476px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.signup-head {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.signup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (width <=440px) {
+    .signup-container {
+        background-color: var(--white-90-);
+        justify-content: flex-start;
+        padding: 24px;
+    }
+
+    .signup-card {
+        padding: 0;
+        width: 100%;
+    }
+
+    .auth-logo {
+        align-self: flex-start;
+    }
+}
+
+@media (height <= 840px) {
+    .signup-container {
+        margin: 24px 0;
+    }
+}

@@ -1,0 +1,218 @@
+.invoice-details-parent {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 0 104px;
+    padding-top: 77px;
+}
+
+.back-to-home {
+    display: flex;
+    gap: 24px;
+}
+
+.invoice-details-crud {
+    background-color: var(--0);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.invoice-details-status {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 24px 0px 24px 32px;
+}
+
+.invoice-details-status span {
+    color: #858bb2;
+}
+
+.invoice-details-edit {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 20px 32px 20px 0px;
+}
+
+.invoice-status {
+    padding: 12px 18px;
+}
+
+.invoice-edit {
+    background-color: #f9fafe;
+    border-radius: 24px;
+    padding: 16px 24px;
+}
+
+.invoice-delete {
+    background-color: var(--9);
+    border-radius: 24px;
+    padding: 16px 24px;
+}
+
+.invoice-update {
+    background-color: var(--1);
+    border-radius: 24px;
+    padding: 16px 24px;
+}
+
+.invoice-edit h4 {
+    color: var(--7);
+}
+
+.invoice-delete h4,
+.invoice-update h4 {
+    color: var(--0);
+}
+
+.invoice-details {
+    background-color: var(--0);
+    margin-top: 24px;
+    padding: 48px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.invoice-details span {
+    color: var(--7);
+}
+
+.invoice-details h3 span {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+}
+
+.invoice-details-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.invoice-details-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.invoice-details-vendor-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.invoice-details-vendor-info p {
+    color: var(--7);
+    text-align: right;
+}
+
+.invoice-details-body {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+
+.invoice-details-body > * {
+    flex: 1;
+}
+
+.invoice-details-client-info p {
+    color: var(--7);
+}
+
+.invoice-details-dates {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.invoice-details-date {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.invoice-details-due-date {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.invoice-details-client-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.invoice-details-client-name {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.invoice-details-client-address {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.invoice-details-footer {
+    background-color: var(--13);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.invoice-details-footer-pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px;
+}
+
+.invoice-details-footer-pricing > div {
+    display: flex;
+    align-items: center;
+    /* outline: 1px solid red; */
+}
+
+.invoice-details-footer-pricing > div > *:not(:first-child) {
+    flex: 1;
+    text-align: right;
+}
+
+.invoice-details-footer-pricing > div > *:first-child {
+    flex: 3;
+}
+
+.invoice-details-footer-pricing > div > *:nth-child(2) {
+    text-align: center;
+}
+
+.invoice-details-footer-pricing-header p {
+    color: var(--7);
+}
+
+.invoice-details-footer-pricing-item .qty,
+.invoice-details-footer-pricing-item .price {
+    color: var(--7);
+}
+
+.invoice-details-footer-due {
+    background-color: var(--14);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.invoice-details-footer-due > * {
+    color: var(--0);
+}
+
+.invoice-details-parent > button span {
+    color: #999999;
+}

@@ -1,0 +1,131 @@
+.invoice-panel-parent {
+    background-color: var(--0);
+    height: 100svh;
+    width: calc(50% + 104px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 0 20px 20px 0;
+    z-index: 90;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.invoice-panel-background {
+    height: 100svh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    background-color: #00000080;
+}
+
+.invoice-panel-main {
+    margin-left: 104px;
+    padding: 56px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.invoice-panel-input-4 {
+    display: flex;
+    gap: 24px;
+}
+
+.invoice-panel-input-5 {
+    display: flex;
+    width: 100%;
+    margin-top: 24px;
+    gap: 24px;
+}
+
+.invoice-panel-input-5 .input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.invoice-panel-input-5 > * {
+    flex: 1;
+}
+
+.invoice-panel-main h2 {
+    margin-bottom: 24px;
+}
+
+.invoice-panel-items-list {
+    margin-top: 12px;
+}
+
+.invoice-panel-items-names-body {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-direction: column;
+}
+
+.invoice-panel-items-names-inputs-parent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.invoice-panel-items-names {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.invoice-panel-items-names-header {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.invoice-panel-items-names-header p {
+    color: var(--7);
+}
+
+.invoice-panel-items-names-inputs {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.invoice-panel-items-list > button {
+    margin-top: 18px;
+    width: 100%;
+}
+
+.invoice-panel-buttons {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    background-color: var(--0);
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    padding-left: 160px;
+    padding-right: 56px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 0px 100px #0000001a;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.invoice-panel-buttons-right {
+    display: flex;
+    gap: 8px;
+}
+
+.invoice-panel-input-5 .input-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

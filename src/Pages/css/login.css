@@ -1,0 +1,54 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+    align-items: safe center;
+    gap: 52px;
+    height: 100svh;
+    min-width: 476px;
+}
+
+.login-head {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login-card {
+    background-color: var(--0);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 476px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.login-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.auth-para .create-account {
+    cursor: pointer;
+    color: var(--1);
+}
+
+@media (width <=440px) {
+    .login-container {
+        background-color: var(--0);
+        justify-content: flex-start;
+        padding: 24px;
+    }
+
+    .login-card {
+        padding: 0;
+        width: 100%;
+    }
+
+    .auth-logo {
+        align-self: flex-start;
+    }
+}

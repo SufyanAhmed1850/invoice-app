@@ -1,0 +1,87 @@
+.company-details-parent {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 0 104px;
+    padding-top: 77px;
+    display: flex;
+    flex-direction: column;
+}
+
+.company-details-parent > button {
+    width: max-content;
+}
+
+.company-details-main {
+    margin-top: 32px;
+    background-color: var(--0);
+    padding: 48px 48px 24px 48px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.company-details-main h3 {
+    color: var(--1);
+}
+
+.company-details-head {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.logo-input {
+    height: 50px;
+    border-radius: 4px;
+    background-color: var(--0);
+    outline: 1px solid var(--5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.company-details-input-1 {
+    display: flex;
+    gap: 24px;
+}
+
+.logo-input-parent .label-head {
+    padding-bottom: 12px;
+}
+
+.company-details-input-1 .input {
+    flex: 2;
+}
+
+.logo-input-parent {
+    flex: 1;
+}
+
+.company-details-input-3 {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+}
+
+.company-details-input-3 > * {
+    width: 100%;
+}
+
+.company-details-save {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 32px 24px 32px;
+    background-color: var(--0);
+}
+
+.company-details-save-button {
+    background-color: var(--1);
+    border-radius: 24px;
+    padding: 16px 24px;
+}
+
+.company-details-save-button h4 {
+    color: var(--0);
+}
