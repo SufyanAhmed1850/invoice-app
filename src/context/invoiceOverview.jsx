@@ -1,11 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 import { axiosPrivate } from "../api/axios";
+import { useLocation } from "react-router-dom";
 
 const invoicesOverviewContext = createContext();
 
 export const InvoicesOverviewProvider = ({ children }) => {
     const [invoicesOverview, setInvoicesOverview] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
+    console.log(location);
+    console.log(location.pathname);
 
     useEffect(() => {
         const getInvoicesOverview = () => {
@@ -22,8 +26,8 @@ export const InvoicesOverviewProvider = ({ children }) => {
                     return Promise.reject(error);
                 });
         };
-        invoicesOverview || getInvoicesOverview();
-    }, []);
+        location.pathname == "/" && (invoicesOverview || getInvoicesOverview());
+    }, [location]);
 
     return (
         <invoicesOverviewContext.Provider

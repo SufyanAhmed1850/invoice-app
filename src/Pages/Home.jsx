@@ -46,33 +46,35 @@ const Home = () => {
                         <h4>New Invoice</h4>
                     </div> */}
                 </div>
-                <div className="invoices-main">
-                    {invoicesOverview &&
-                        invoicesOverview.map((invoiceOverview) => (
-                            <Invoice
-                                key={invoiceOverview.invoiceNumber}
-                                invoiceNumber={invoiceOverview.invoiceNumber}
-                                name={invoiceOverview.clientName}
-                                total={invoiceOverview.total}
-                                dueDate={invoiceOverview.dueDate}
-                                status={invoiceOverview.status}
-                            />
-                        ))}
-                    {/* <Invoice status="Paid" />
-                    <Invoice status="Pending" />
-                    <Invoice status="Pending" />
-                    <Invoice status="Draft" />
-                    <Invoice status="Pending" /> */}
-                </div>
-                {/* <div className="empty-invoices">
-                    <img src={noInvoicesIcon} alt="No Invoices" />
-                    <h2>There is nothing here</h2>
-                    <span>
-                        Create an invoice by clicking the{" "}
-                        <span style={{ fontWeight: "700" }}>New Invoice</span>{" "}
-                        button and get started
-                    </span>
-                </div> */}
+                {invoicesOverview?.length > 0 ? (
+                    <div className="invoices-main">
+                        {invoicesOverview &&
+                            invoicesOverview.map((invoiceOverview) => (
+                                <Invoice
+                                    key={invoiceOverview.invoiceNumber}
+                                    invoiceNumber={
+                                        invoiceOverview.invoiceNumber
+                                    }
+                                    name={invoiceOverview.clientName}
+                                    total={invoiceOverview.total}
+                                    dueDate={invoiceOverview.dueDate}
+                                    status={invoiceOverview.status}
+                                />
+                            ))}
+                    </div>
+                ) : (
+                    <div className="empty-invoices">
+                        <img src={noInvoicesIcon} alt="No Invoices" />
+                        <h2>There is nothing here</h2>
+                        <span>
+                            Create an invoice by clicking the{" "}
+                            <span style={{ fontWeight: "700" }}>
+                                New Invoice
+                            </span>{" "}
+                            button and get started
+                        </span>
+                    </div>
+                )}
             </div>
         </>
     );

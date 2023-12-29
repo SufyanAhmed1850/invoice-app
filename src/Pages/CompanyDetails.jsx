@@ -1,7 +1,9 @@
 import "./css/companydetails.css";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { axiosPrivate } from "../api/axios";
+import companyDetailsContext from "../context/companyDetails.jsx";
 import { companyDetailsSchema } from "../schemas/companyDetailsSchema.jsx";
 import toast from "react-hot-toast";
 import Input from "../Components/Input";
@@ -9,21 +11,26 @@ import Button from "../Components/Button.jsx";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 
 const CompanyDetails = () => {
+    const { companyDetails, setCompanyDetails } = useContext(
+        companyDetailsContext,
+    );
+    console.log("companyDetails", companyDetails);
     const navigate = useNavigate();
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
-                name: "",
-                address: "",
-                city: "",
-                postCode: "",
-                country: "",
+                name: companyDetails?.name || "",
+                address: companyDetails?.address || "",
+                city: companyDetails?.city || "",
+                postCode: companyDetails?.postCode || "",
+                country: companyDetails?.country || "",
             },
             validationSchema: companyDetailsSchema,
             onSubmit: (values, actions) => {
                 console.log("Form submitted with values:", values);
                 saveCompantDetails(values, actions);
             },
+            enableReinitialize: true,
         });
     const handleEnterKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -43,7 +50,7 @@ const CompanyDetails = () => {
             })
             .then((response) => {
                 console.log(response);
-                actions.resetForm();
+                // actions.resetForm();
             })
             .catch((error) => {
                 console.error(error);
