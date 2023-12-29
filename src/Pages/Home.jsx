@@ -5,7 +5,7 @@ import invoicesOverviewContext from "../context/invoiceOverview";
 import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
 import noInvoicesIcon from "../assets/images/illustration-empty.svg";
 import SidePanel from "../Components/SidePanel";
-import Invoice from "../Components/invoice";
+import Invoice from "../Components/Invoice";
 import InvoicePanel from "../Components/InvoicePanel";
 import Button from "../Components/Button";
 import { useParams } from "react-router-dom";
