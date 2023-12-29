@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import invoiceDetailsContext from "../context/invoice";
 import invoicesOverviewContext from "../context/invoiceOverview";
 import { AnimatePresence } from "framer-motion";
-import InvoiceStatus from "../Components/invoiceStatus";
+import InvoiceStatus from "../Components/InvoiceStatus";
 import SidePanel from "../Components/SidePanel";
 import Dialog from "../Components/Dialog";
 import Button from "../Components/Button";
@@ -13,6 +13,7 @@ import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 import { useParams } from "react-router-dom";
 import InvoicePanel from "../Components/InvoicePanel";
 import { axiosPrivate } from "../api/axios";
+import toast from "react-hot-toast";
 
 const DetailedInvoice = () => {
     const { invoiceNumber } = useParams();
