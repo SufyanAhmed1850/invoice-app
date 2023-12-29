@@ -2,8 +2,7 @@ import "./css/invoice.css";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
-
-import InvoiceStatus from "./invoiceStatus";
+import InvoiceStatus from "./InvoiceStatus";
 import iconArrowRight from "../assets/images/icon-arrow-right.svg";
 
 const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {

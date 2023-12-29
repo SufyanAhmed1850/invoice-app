@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "./css/invoiceStatus.css";
+import { useEffect, useState } from "react";
 
 const InvoiceStatus = ({ status }) => {
     const [color, setColor] = useState();
