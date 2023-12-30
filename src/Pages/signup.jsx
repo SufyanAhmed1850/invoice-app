@@ -11,7 +11,6 @@ import logoLarge from "../assets/images/logo-invoice.svg";
 
 const Signup = () => {
     const navigate = useNavigate();
-    const location = useLocation();
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -21,7 +20,6 @@ const Signup = () => {
             },
             validationSchema: signupSchema,
             onSubmit: (values, actions) => {
-                console.log("Form submitted with values:", values);
                 userSignUp(values, actions);
             },
         });
@@ -38,7 +36,6 @@ const Signup = () => {
     };
 
     const userSignUp = (values, actions) => {
-        console.log("Sign up user");
         const registration = axios
             .post(import.meta.env.VITE_BE_URL + "/signup", values)
             .then((response) => {

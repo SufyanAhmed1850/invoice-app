@@ -13,7 +13,6 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const to = location?.state?.from?.pathname || "/";
-    console.log(to);
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -22,7 +21,6 @@ const Login = () => {
             },
             validationSchema: loginSchema,
             onSubmit: (values, actions) => {
-                console.log("Form submitted with values:", values);
                 loginUser(values, actions);
             },
         });
@@ -39,7 +37,6 @@ const Login = () => {
     };
 
     const loginUser = (values, actions) => {
-        console.log("Login User");
         const authenticate = axios
             .post(import.meta.env.VITE_BE_URL + "/login", values)
             .then((response) => {
