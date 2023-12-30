@@ -1,9 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect } from "react";
 import "./css/dialog.css";
 import Button from "./Button";
 
-const Dialog = ({ setShowDialog, onClose, onClick }) => {
+const Dialog = ({ onClose, onClick }) => {
     useEffect(() => {
         const handleOutsideClick = (e) => {
             if (!e.target.closest(".dialog")) {
@@ -42,21 +42,12 @@ const Dialog = ({ setShowDialog, onClose, onClick }) => {
                         color="var(--7)"
                         onClick={onClose}
                     />
-                    {/* <div className="invoice-edit" onClick={onClose}>
-                        <h4>Cancel</h4>
-                    </div> */}
                     <Button
                         text="Delete"
                         bgColor="var(--9)"
                         color="var(--0)"
                         onClick={onClick}
                     />
-                    {/* <div
-                        onClick={() => setShowDialog(true)}
-                        className="invoice-delete"
-                        >
-                        <h4>Delete</h4>
-                    </div> */}
                 </div>
             </motion.div>
         </motion.div>

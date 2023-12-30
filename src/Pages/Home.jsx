@@ -3,15 +3,12 @@ import { useState, useContext } from "react";
 import invoicesOverviewContext from "../context/invoiceOverview";
 import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
 import noInvoicesIcon from "../assets/images/illustration-empty.svg";
-import SidePanel from "../Components/SidePanel";
 import Invoice from "../Components/Invoice";
 import { motion, AnimatePresence } from "framer-motion";
 import InvoicePanel from "../Components/InvoicePanel";
 import Button from "../Components/Button";
 const Home = () => {
-    const { isLoading, invoicesOverview, setInvoicesOverview } = useContext(
-        invoicesOverviewContext,
-    );
+    const { invoicesOverview } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
         setShowInvoicePanel(!showInvoicePanel);
@@ -36,33 +33,41 @@ const Home = () => {
                         img={addInvoiceIcon}
                     />
                 </div>
-                {invoicesOverview?.length > 0 ? (
+                {invoicesOverview?.length < 1 ? (
                     <div className="invoices-main">
                         <AnimatePresence>
                             {invoicesOverview &&
-                                invoicesOverview.map((invoiceOverview, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, x: -25 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: 25 }}
-                                        transition={{
-                                            duration: 0.2,
-                                            delay: index * 0.05,
-                                        }}
-                                    >
-                                        <Invoice
-                                            key={invoiceOverview.invoiceNumber}
-                                            invoiceNumber={
-                                                invoiceOverview.invoiceNumber
-                                            }
-                                            name={invoiceOverview.clientName}
-                                            total={invoiceOverview.total}
-                                            dueDate={invoiceOverview.dueDate}
-                                            status={invoiceOverview.status}
-                                        />
-                                    </motion.div>
-                                ))}
+                                invoicesOverview.map(
+                                    (invoiceOverview, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: -25 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: 25 }}
+                                            transition={{
+                                                duration: 0.2,
+                                                delay: index * 0.05,
+                                            }}
+                                        >
+                                            <Invoice
+                                                key={
+                                                    invoiceOverview.invoiceNumber
+                                                }
+                                                invoiceNumber={
+                                                    invoiceOverview.invoiceNumber
+                                                }
+                                                name={
+                                                    invoiceOverview.clientName
+                                                }
+                                                total={invoiceOverview.total}
+                                                dueDate={
+                                                    invoiceOverview.dueDate
+                                                }
+                                                status={invoiceOverview.status}
+                                            />
+                                        </motion.div>
+                                    ),
+                                )}
                         </AnimatePresence>
                     </div>
                 ) : (
