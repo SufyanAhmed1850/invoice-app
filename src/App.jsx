@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import Home from "./Pages/Home";
 import DetailedInvoice from "./Pages/DetailedInvoice";
 import CompanyDetails from "./Pages/CompanyDetails";
-import Login from "./Pages/Login";
+import Login from "./Pages/login";
 import Signup from "./Pages/signup";
 import RequireAuth from "./Hooks/RequireAuth";
 import Auth from "./Hooks/Auth";
