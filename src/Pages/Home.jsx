@@ -70,23 +70,22 @@ const Home = () => {
                         </AnimatePresence>
                     </div>
                 ) : (
-                    <div className="h1">No Invoices</div>
-                    // <div className="empty-invoices">
-                    //     <img
-                    //         src={
-                    //             "https://res.cloudinary.com/dke5jqhus/image/upload/f_webp/v1703925122/illustration-empty_txzcvq.svg"
-                    //         }
-                    //         alt="No Invoices"
-                    //     />
-                    //     <h2>There is nothing here</h2>
-                    //     <span>
-                    //         Create an invoice by clicking the{" "}
-                    //         <span style={{ fontWeight: "700" }}>
-                    //             New Invoice
-                    //         </span>{" "}
-                    //         button and get started
-                    //     </span>
-                    // </div>
+                    <div className="empty-invoices">
+                        <img
+                            src={
+                                "https://res.cloudinary.com/dke5jqhus/image/upload/f_webp/v1703925122/illustration-empty_txzcvq.svg"
+                            }
+                            alt="No Invoices"
+                        />
+                        <h2>There is nothing here</h2>
+                        <span>
+                            Create an invoice by clicking the{" "}
+                            <span style={{ fontWeight: "700" }}>
+                                New Invoice
+                            </span>{" "}
+                            button and get started
+                        </span>
+                    </div>
                 )}
             </div>
         </>
