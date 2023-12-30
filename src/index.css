@@ -1,14 +1,12 @@
 @font-face {
     font-family: "League Spartan";
-    src: url("https://res.cloudinary.com/dke5jqhus/raw/upload/v1703926610/LeagueSpartan-Bold_cclv1e.woff2")
-        format("woff2");
+    src: url("./assets/fonts/LeagueSpartan-Bold.woff2") format("woff2");
     font-weight: 700;
 }
 
 @font-face {
     font-family: "League Spartan";
-    src: url("https://res.cloudinary.com/dke5jqhus/raw/upload/v1703926609/LeagueSpartan-Medium_sbrocu.woff2")
-        format("woff2");
+    src: url("./assets/fonts/LeagueSpartan-Medium.woff2") format("woff2");
     font-weight: 500;
 }
 
