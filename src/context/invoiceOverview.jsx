@@ -10,11 +10,9 @@ export const InvoicesOverviewProvider = ({ children }) => {
     const location = useLocation();
 
     const getInvoicesOverview = () => {
-        console.log("Calling getInvoicesOverview");
         axiosPrivate
             .get("/invoice/overview")
             .then((response) => {
-                console.log(response?.data?.invoices);
                 setInvoicesOverview(response?.data?.invoices);
                 setIsLoading(false);
             })
