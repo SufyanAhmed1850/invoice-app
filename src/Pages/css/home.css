@@ -2,13 +2,24 @@
     width: 100%;
     max-width: 900px;
     margin: 0 0 0 104px;
-    padding-top: 77px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-top: 77px; */
 }
 
 .invoices-head {
+    width: 100%;
+    background-color: var(--11);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    padding-top: 77px;
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    top: 0;
+    z-index: 80;
 }
 
 .invoices-title p {
@@ -17,7 +28,9 @@
 }
 
 .invoices-main {
-    padding-top: 64px;
+    /* padding-top: 64px; */
+    width: 98%;
+    padding-bottom: 64px;
     display: flex;
     flex-direction: column;
     gap: 16px;

@@ -48,12 +48,12 @@ const Home = () => {
                                         <motion.div
                                             layout
                                             key={invoiceOverview.invoiceNumber}
-                                            initial={{ opacity: 0, x: -25 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: 25 }}
+                                            initial={{ opacity: 0, y: -5 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 5 }}
                                             transition={{
                                                 layout: {
-                                                    duration: 0.5,
+                                                    duration: 0.7,
                                                     type: "spring",
                                                 },
                                                 duration: 0.2,
