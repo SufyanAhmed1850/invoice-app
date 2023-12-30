@@ -15,7 +15,7 @@
     margin-top: 32px;
     background-color: var(--0);
     padding: 48px 48px 24px 48px;
-    border-radius: 8px;
+    border-radius: 8px 8px 0px 0px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -31,32 +31,13 @@
     gap: 8px;
 }
 
-.logo-input {
-    height: 50px;
-    border-radius: 4px;
-    background-color: var(--0);
-    outline: 1px solid var(--5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 .company-details-input-1 {
     display: flex;
     gap: 24px;
 }
 
-.logo-input-parent .label-head {
-    padding-bottom: 12px;
-}
-
 .company-details-input-1 .input {
     flex: 2;
-}
-
-.logo-input-parent {
-    flex: 1;
 }
 
 .company-details-input-3 {
@@ -74,6 +55,7 @@
     justify-content: flex-end;
     padding: 0 32px 24px 32px;
     background-color: var(--0);
+    border-radius: 0px 0px 8px 8px
 }
 
 .company-details-save-button {

@@ -11,7 +11,9 @@ import Button from "../Components/Button.jsx";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 
 const CompanyDetails = () => {
-    const { companyDetails } = useContext(companyDetailsContext);
+    const { companyDetails, setCompanyDetails } = useContext(
+        companyDetailsContext,
+    );
     const navigate = useNavigate();
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
@@ -46,8 +48,8 @@ const CompanyDetails = () => {
                 companyDetails,
             })
             .then((response) => {
+                setCompanyDetails(values);
                 console.log(response);
-                // actions.resetForm();
             })
             .catch((error) => {
                 console.error(error);
@@ -88,10 +90,6 @@ const CompanyDetails = () => {
                     img={leftArrowIcon}
                     onClick={() => navigate("/")}
                 />
-                {/* <div className="back-to-home">
-                    <img src={leftArrowIcon} alt="Left Arrow" />
-                    <h4>Go back</h4>
-                </div> */}
                 <div className="company-details-main">
                     <div className="company-details-head">
                         <h1>Company Details</h1>
@@ -109,14 +107,6 @@ const CompanyDetails = () => {
                             error={errors.name}
                             touched={touched.name}
                         />
-                        {/* <div className="logo-input-parent">
-                            <div className="label-head">
-                                <p style={{ color: "var(--7)" }}>Logo</p>
-                            </div>
-                            <div className="logo-input">
-                                <img src={galleryIcon} alt="Company Logo" />
-                            </div>
-                        </div> */}
                     </div>
                     <div className="company-details-input-2">
                         <Input

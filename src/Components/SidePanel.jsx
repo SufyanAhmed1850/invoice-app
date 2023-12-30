@@ -25,12 +25,6 @@ const SidePanel = () => {
                 exit={{
                     opacity: 0,
                     x: "-50px",
-                    // transition: {
-                    //     type: "spring",
-                    //     stiffness: 250,
-                    //     damping: 50,
-                    // },
-                    // width: "400px",
                 }}
                 className="side-panel"
             >
@@ -41,9 +35,6 @@ const SidePanel = () => {
                     <IconButton className="side-panel-theme">
                         <img src={darkThemeIcon} alt="Dark Theme" />
                     </IconButton>
-                    {/* <div className="side-panel-theme">
-                    <img src={darkThemeIcon} alt="Dark Theme" />
-                </div> */}
                     <div className="side-panel-profile">
                         <IconButton
                             onClick={() => navigate("/profile-details")}
