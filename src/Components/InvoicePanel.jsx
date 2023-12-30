@@ -85,36 +85,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         validationSchema: invoicePanelDataSchema,
         onSubmit: (values, actions) => {
             console.log("Form values:", values);
-            // const {
-            //     clientName,
-            //     clientEmail,
-            //     clientAddress,
-            //     clientCity,
-            //     clientPostCode,
-            //     clientCountry,
-            //     invoiceDate,
-            //     paymentTerms,
-            //     projectDescription,
-            //     items,
-            // } = values;
-            // const editedValues = {
-            //     clientName: clientName,
-            //     clientEmail: clientEmail,
-            //     clientAddress: clientAddress,
-            //     clientCity: clientCity,
-            //     clientPostCode: clientPostCode,
-            //     clientCountry: clientCountry,
-            //     invoiceDate: invoiceDate,
-            //     paymentTerms: paymentTerms,
-            //     projectDescription: projectDescription,
-            //     items: items,
-            // };
-            // console.log("Edited Form values:", editedValues);
-            // edit == "true" &&
-            //     setInvoiceDetails({
-            //         ...invoiceDetails,
-            //         [invoiceNumber]: values,
-            //     });
             edit == "true"
                 ? editInvoice(values, actions)
                 : saveInvoice(values, actions);
@@ -365,12 +335,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                         exit={{
                             opacity: 0,
                             x: "-50px",
-                            // transition: {
-                            //     type: "spring",
-                            //     stiffness: 250,
-                            //     damping: 50,
-                            // },
-                            // width: "400px",
                         }}
                         className="invoice-panel-parent"
                     >
@@ -611,16 +575,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                                         }
                                                     />
                                                 </IconButton>
-                                                {/* <div
-                                                
-                                                
-                                                className="invoice-panel-items-remove"
-                                            >
-                                                <img
-                                                    src={deleteIcon}
-                                                    alt="Delete"
-                                                />
-                                            </div> */}
                                             </motion.div>
                                         ))}
                                     </AnimatePresence>
@@ -631,12 +585,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                     color="var(--7)"
                                     onClick={handleAddItem}
                                 />
-                                {/* <div
-                                    onClick={handleAddItem}
-                                    className="invoice-panel-add-new-item"
-                                >
-                                    <h4>+ Add New Item</h4>
-                                </div> */}
                             </div>
                         </div>
                         <div className="invoice-panel-buttons">
@@ -653,9 +601,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                         color="var(--7)"
                                     />
                                 )}
-                                {/* <div className="invoice-panel-buttons-discard">
-                                    <h4>Discard</h4>
-                                </div> */}
                             </div>
                             <div className="invoice-panel-buttons-right">
                                 <Button
@@ -671,9 +616,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                         edit == "true" ? "var(--7)" : "var(--5)"
                                     }
                                 />
-                                {/* <div className="invoice-panel-buttons-draft">
-                                    <h4>Save as Draft</h4>
-                                </div> */}
                                 <Button
                                     text={
                                         edit == "true"
@@ -684,13 +626,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                     color="var(--0)"
                                     onClick={handleSaveClick}
                                 />
-
-                                {/* <div
-                                    onClick={handleSaveClick}
-                                    className="invoice-panel-buttons-save"
-                                >
-                                    <h4>Save & Send</h4>
-                                </div> */}
                             </div>
                         </div>
                     </motion.div>
