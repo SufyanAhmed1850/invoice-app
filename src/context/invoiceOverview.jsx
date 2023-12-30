@@ -15,6 +15,7 @@ export const InvoicesOverviewProvider = ({ children }) => {
             .then((response) => {
                 setInvoicesOverview(response?.data?.invoices);
                 setIsLoading(false);
+                console.log(response)
             })
             .catch((error) => {
                 console.error(error);

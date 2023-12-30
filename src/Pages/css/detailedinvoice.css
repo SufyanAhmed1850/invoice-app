@@ -5,11 +5,6 @@
     padding-top: 77px;
 }
 
-.back-to-home {
-    display: flex;
-    gap: 24px;
-}
-
 .invoice-details-crud {
     background-color: var(--0);
     border-radius: 8px;
@@ -39,33 +34,6 @@
 
 .invoice-status {
     padding: 12px 18px;
-}
-
-.invoice-edit {
-    background-color: #f9fafe;
-    border-radius: 24px;
-    padding: 16px 24px;
-}
-
-.invoice-delete {
-    background-color: var(--9);
-    border-radius: 24px;
-    padding: 16px 24px;
-}
-
-.invoice-update {
-    background-color: var(--1);
-    border-radius: 24px;
-    padding: 16px 24px;
-}
-
-.invoice-edit h4 {
-    color: var(--7);
-}
-
-.invoice-delete h4,
-.invoice-update h4 {
-    color: var(--0);
 }
 
 .invoice-details {
@@ -177,7 +145,6 @@
 .invoice-details-footer-pricing > div {
     display: flex;
     align-items: center;
-    /* outline: 1px solid red; */
 }
 
 .invoice-details-footer-pricing > div > *:not(:first-child) {
@@ -194,11 +161,6 @@
 }
 
 .invoice-details-footer-pricing-header p {
-    color: var(--7);
-}
-
-.invoice-details-footer-pricing-item .qty,
-.invoice-details-footer-pricing-item .price {
     color: var(--7);
 }
 

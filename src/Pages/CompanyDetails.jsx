@@ -11,10 +11,7 @@ import Button from "../Components/Button.jsx";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 
 const CompanyDetails = () => {
-    const { companyDetails, setCompanyDetails } = useContext(
-        companyDetailsContext,
-    );
-    console.log("companyDetails", companyDetails);
+    const { companyDetails } = useContext(companyDetailsContext);
     const navigate = useNavigate();
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({

@@ -24,7 +24,14 @@ const Home = () => {
                 <div className="invoices-head">
                     <div className="invoices-title">
                         <h1>Invoices</h1>
-                        <p>There are 7 total invoices</p>
+                        {invoicesOverview?.length > 0 ? (
+                            <p>
+                                There are {invoicesOverview?.length} total
+                                invoices
+                            </p>
+                        ) : (
+                            <p>No invoices</p>
+                        )}
                     </div>
                     <Button
                         text="New Invoice"
@@ -39,11 +46,16 @@ const Home = () => {
                                 invoicesOverview.map(
                                     (invoiceOverview, index) => (
                                         <motion.div
-                                            key={index}
+                                            layout
+                                            key={invoiceOverview.invoiceNumber}
                                             initial={{ opacity: 0, x: -25 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: 25 }}
                                             transition={{
+                                                layout: {
+                                                    duration: 0.5,
+                                                    type: "spring",
+                                                },
                                                 duration: 0.2,
                                                 delay: index * 0.05,
                                             }}

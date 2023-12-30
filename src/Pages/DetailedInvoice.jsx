@@ -147,10 +147,6 @@ const DetailedInvoice = () => {
                     img={leftArrowIcon}
                     onClick={() => navigate("/")}
                 />
-                {/* <div className="back-to-home">
-                    <img src={leftArrowIcon} alt="Left Arrow" />
-                    <h4>Go back</h4>
-                </div> */}
                 <div className="invoice-details-crud">
                     <div className="invoice-details-status">
                         <span>Status</span>
@@ -165,30 +161,24 @@ const DetailedInvoice = () => {
                             bgColor="#f9fafe"
                             color="var(--7)"
                         />
-                        {/* <div className="invoice-edit">
-                            <h4>Edit</h4>
-                        </div> */}
                         <Button
                             text="Delete"
                             bgColor="var(--9)"
                             color="var(--0)"
                             onClick={() => setShowDialog(true)}
                         />
-                        {/* <div
-                            onClick={() => setShowDialog(true)}
-                            className="invoice-delete"
-                        >
-                            <h4>Delete</h4>
-                        </div> */}
                         <Button
+                            disabled={
+                                invoiceDetails?.[invoiceNumber]?.status ==
+                                "Pending"
+                                    ? false
+                                    : true
+                            }
                             onClick={markAsPaid}
                             text="Mark as Paid"
                             bgColor="var(--1)"
                             color="var(--0)"
                         />
-                        {/* <div className="invoice-update">
-                            <h4>Mark as Paid</h4>
-                        </div> */}
                     </div>
                 </div>
                 <div className="invoice-details">
@@ -321,18 +311,6 @@ const DetailedInvoice = () => {
                                         </div>
                                     ),
                                 )}
-                            {/* <div className="invoice-details-footer-pricing-item">
-                                <h4>Banner Design</h4>
-                                <h4 className="qty">1</h4>
-                                <h4 className="price">£ 156.00</h4>
-                                <h4>£ 156.00</h4>
-                            </div>
-                            <div className="invoice-details-footer-pricing-item">
-                                <h4>Email Design</h4>
-                                <h4 className="qty">2</h4>
-                                <h4 className="price">£ 200.00</h4>
-                                <h4>£ 400.00</h4>
-                            </div> */}
                         </div>
                         <div className="invoice-details-footer-due">
                             <p>Amount Due</p>

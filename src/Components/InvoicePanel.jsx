@@ -118,10 +118,105 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         resetForm();
     };
 
+    const handleSaveDraftClick = () => {
+        const draftFormValues = {
+            clientName: values.clientName,
+            clientEmail: values.clientEmail,
+            clientAddress: values.clientAddress,
+            clientCity: values.clientCity,
+            clientPostCode: values.clientPostCode,
+            clientCountry: values.clientCountry,
+            invoiceDate: values.invoiceDate,
+            paymentTerms: values.paymentTerms,
+            projectDescription: values.projectDescription,
+            items: values.items,
+            status: "Draft",
+        };
+        // console.log(draftFormValues);
+        onClose();
+        resetForm();
+        saveDraft(draftFormValues);
+    };
+
+    const saveDraft = (values) => {
+        let formattedDueDate = "";
+        if (values.invoiceDate && values.paymentTerms) {
+            const createDate = dayjs(values.invoiceDate);
+            const dueDate = createDate.add(values.paymentTerms, "day");
+            formattedDueDate = dueDate.format();
+        }
+
+        let totalOfItemsPrices = 0;
+        let itemTotal = 0;
+        const updatedItems = values.items.map((item) => {
+            if (item.qty && item.price) {
+                itemTotal = item.qty * item.price;
+            } else {
+                item.qty = 0;
+                item.price = 0;
+                itemTotal = 0;
+            }
+            totalOfItemsPrices += itemTotal;
+            return {
+                ...item,
+                total: itemTotal,
+            };
+        });
+
+        const invoiceDetails = {
+            ...values,
+            items: updatedItems,
+            total: totalOfItemsPrices,
+            dueDate: formattedDueDate,
+        };
+        console.log(invoiceDetails);
+        const draftPromise = axiosPrivate
+            .post("/invoice", {
+                invoiceDetails,
+            })
+            .then((response) => {
+                console.log(response?.data?.invoice);
+                setInvoicesOverview([
+                    response?.data?.invoice,
+                    ...invoicesOverview,
+                ]);
+            })
+            .catch((error) => {
+                console.error(error);
+                return Promise.reject(error);
+            });
+        toast.promise(
+            draftPromise,
+            {
+                loading: "Saving Draft...",
+                success: "Draft Saved successfully!",
+                error: (err) => err.response.data.message,
+            },
+            {
+                style: {
+                    background: "var(--8)",
+                    color: "var(--0)",
+                },
+                loading: {
+                    position: "bottom-center",
+                },
+                success: {
+                    duration: 2000,
+                    position: "bottom-center",
+                },
+                error: {
+                    duration: 2000,
+                    position: "bottom-center",
+                },
+            },
+        );
+    };
+
     const handleSaveClick = () => {
         console.log(errors);
         handleSubmit();
     };
+
     const editInvoice = (values, actions) => {
         const createDate = dayjs(values.invoiceDate);
         const dueDate = createDate.add(values.paymentTerms, "day");
@@ -142,11 +237,13 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             items: updatedItems,
             total: totalOfItemsPrices,
             dueDate: formattedDueDate,
+            status: "Pending",
         };
 
-        const savePromise = axiosPrivate
+        const editPromise = axiosPrivate
             .put("/invoice/edit", editedInvoiceDetails)
             .then((response) => {
+                onClose();
                 console.log(response);
                 setInvoiceDetails({
                     ...invoiceDetails,
@@ -163,6 +260,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                 clientName: editedInvoiceDetails.clientName,
                                 dueDate: editedInvoiceDetails.dueDate,
                                 total: editedInvoiceDetails.total,
+                                status: editedInvoiceDetails.status
                             };
                         }
                         return item;
@@ -175,7 +273,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                 return Promise.reject(error);
             });
         toast.promise(
-            savePromise,
+            editPromise,
             {
                 loading: "Saving changes...",
                 success: "Saved changes successfully!",
@@ -222,6 +320,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             total: totalOfItemsPrices,
             dueDate: formattedDueDate,
         };
+        console.log(invoiceDetails);
         const savePromise = axiosPrivate
             .post("/invoice", {
                 invoiceDetails,
@@ -615,6 +714,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                     color={
                                         edit == "true" ? "var(--7)" : "var(--5)"
                                     }
+                                    onClick={handleSaveDraftClick}
                                 />
                                 <Button
                                     text={
