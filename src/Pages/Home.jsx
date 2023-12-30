@@ -2,7 +2,6 @@ import "./css/home.css";
 import { useState, useContext } from "react";
 import invoicesOverviewContext from "../context/invoiceOverview";
 import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
-import noInvoicesIcon from "../assets/images/illustration-empty.svg";
 import Invoice from "../Components/Invoice";
 import { motion, AnimatePresence } from "framer-motion";
 import InvoicePanel from "../Components/InvoicePanel";
@@ -72,7 +71,12 @@ const Home = () => {
                     </div>
                 ) : (
                     <div className="empty-invoices">
-                        <img src={noInvoicesIcon} alt="No Invoices" />
+                        <img
+                            src={
+                                "https://res.cloudinary.com/dke5jqhus/image/upload/f_webp/v1703925122/illustration-empty_txzcvq.svg"
+                            }
+                            alt="No Invoices"
+                        />
                         <h2>There is nothing here</h2>
                         <span>
                             Create an invoice by clicking the{" "}
