@@ -7,7 +7,6 @@ import iconArrowRight from "../assets/images/icon-arrow-right.svg";
 
 const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {
     const navigate = useNavigate();
-    // 19 Aug 2021
 
     return (
         <>

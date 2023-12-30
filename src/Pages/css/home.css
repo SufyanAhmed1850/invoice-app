@@ -16,22 +16,6 @@
     padding-top: 3px;
 }
 
-.new-invoice-button {
-    background-color: var(--1);
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    gap: 16px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.new-invoice-button h4 {
-    padding-right: 8px;
-    color: var(--0);
-}
-
 .invoices-main {
     padding-top: 64px;
     display: flex;

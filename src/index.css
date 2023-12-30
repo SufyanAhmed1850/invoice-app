@@ -84,16 +84,16 @@ p {
     color: var(--8);
 }
 
+.input,
+input {
+    width: 100%;
+}
+
 span:not(.MuiButtonBase-root span) {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: -0.1px;
     color: var(--8);
-}
-
-.input,
-input {
-    width: 100%;
 }
 
 .MuiPaper-root,

@@ -21,8 +21,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
     const { invoicesOverview, setInvoicesOverview } = useContext(
         invoicesOverviewContext,
     );
-    // console.log(invoiceNumber);
-    // console.log(invoiceDetails);
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const handleMouseOver = (index) => {
@@ -127,7 +125,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         if (edit === "true" && invoiceDetails?.[invoiceNumber]) {
             for (const key in invoiceDetails?.[invoiceNumber]) {
                 if (key === "invoiceDate") {
-                    // Ensure invoiceDate is a Day.js object
                     const date = dayjs(
                         invoiceDetails?.[invoiceNumber]?.invoiceDate,
                     );
@@ -136,7 +133,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                     setFieldValue(key, invoiceDetails?.[invoiceNumber]?.[key]);
                 }
             }
-            // If editInvoiceData contains items array, make sure to deep copy to prevent direct mutation
             if (invoiceDetails?.[invoiceNumber]?.items) {
                 setFieldValue(
                     "items",
@@ -189,7 +185,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                 const indexToUpdate = invoicesOverview.findIndex(
                     (index) => index.invoiceNumber == invoiceNumber,
                 );
-
                 setInvoicesOverview(
                     invoicesOverview.map((item, index) => {
                         if (index === indexToUpdate) {
@@ -203,8 +198,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                         return item;
                     }),
                 );
-                console.log("index", invoicesOverview);
-                console.log("index", indexToUpdate);
                 edit == "true" || actions.resetForm();
             })
             .catch((error) => {

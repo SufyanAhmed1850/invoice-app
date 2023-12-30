@@ -7,10 +7,8 @@ export const InvoiceDetailsProvider = ({ children }) => {
     const [invoiceNum, setInvoiceNum] = useState(null);
     const [invoiceDetails, setInvoiceDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    console.log(invoiceDetails);
     useEffect(() => {
         const getInvoiceDetails = () => {
-            console.log("invoiceDetails");
             axiosPrivate
                 .get(`/invoice/detail/${invoiceNum}`)
                 .then((response) => {
