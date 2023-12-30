@@ -1,7 +1,7 @@
 import "./css/signup.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signupSchema } from "../schemas/signupSchema";
 import { useFormik } from "formik";
 import Cookies from "js-cookie";

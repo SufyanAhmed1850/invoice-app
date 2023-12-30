@@ -4,7 +4,7 @@ import Home from "./Pages/Home";
 import DetailedInvoice from "./Pages/DetailedInvoice";
 import CompanyDetails from "./Pages/CompanyDetails";
 import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import Signup from "./Pages/signup";
 import RequireAuth from "./Hooks/RequireAuth";
 import Auth from "./Hooks/Auth";
 import SidePanel from "./Components/SidePanel";
