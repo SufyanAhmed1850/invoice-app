@@ -33,7 +33,7 @@ const Home = () => {
                         img={addInvoiceIcon}
                     />
                 </div>
-                {invoicesOverview?.length < 1 ? (
+                {invoicesOverview?.length > 0 ? (
                     <div className="invoices-main">
                         <AnimatePresence>
                             {invoicesOverview &&
