@@ -12,7 +12,9 @@ const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {
         <>
             <motion.div
                 whileTap={{ scale: 1 }}
-                whileHover={{ scale: 1.01 }}
+                whileHover={{
+                    scale: 1.01,
+                }}
                 onClick={() => navigate(`/invoice/${invoiceNumber}`)}
                 className="invoice"
             >
