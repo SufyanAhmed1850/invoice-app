@@ -11,7 +11,7 @@ const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {
     return (
         <>
             <motion.div
-                whileTap={{ scale: 0.993 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() => navigate(`/invoice/${invoiceNumber}`)}
                 className="invoice"
             >

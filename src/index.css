@@ -281,36 +281,36 @@ span:not(.MuiButtonBase-root span) {
 }
 
 /* ----- Scrollbar Styles For Firefox ----- */
-.invoice-panel-parent {
+:root {
     scrollbar-color: var(--5) transparent;
     scrollbar-width: thin;
 }
 
-.invoice-panel-parent::-moz-scrollbar {
+:root::-moz-scrollbar {
     width: 8px;
 }
 
-.invoice-panel-parent::-moz-scrollbar-thumb {
+:root::-moz-scrollbar-thumb {
     background-color: var(--5);
     border-radius: 4px;
 }
 
-.invoice-panel-parent::-moz-scrollbar-track {
+:root::-moz-scrollbar-track {
     background-color: transparent;
 }
 
 /* ----- Scrollbar Styles For Other Browsers ----- */
-.invoice-panel-parent::-webkit-scrollbar-track {
+:root::-webkit-scrollbar-track {
     border-radius: 4px;
     background-color: transparent;
 }
 
-.invoice-panel-parent::-webkit-scrollbar {
+:root::-webkit-scrollbar {
     width: 8px;
     background-color: transparent;
 }
 
-.invoice-panel-parent::-webkit-scrollbar-thumb {
+:root::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: var(--5);
 }

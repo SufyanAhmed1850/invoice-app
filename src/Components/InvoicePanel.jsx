@@ -18,8 +18,9 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         invoiceDetailsContext,
     );
 
-    const { invoicesOverview, setInvoicesOverview, getInvoicesOverview } =
-        useContext(invoicesOverviewContext);
+    const { getInvoicesOverview, setCurrentPage } = useContext(
+        invoicesOverviewContext,
+    );
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const handleMouseOver = (index) => {
@@ -174,10 +175,8 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             })
             .then((response) => {
                 console.log(response?.data?.invoice);
-                setInvoicesOverview([
-                    response?.data?.invoice,
-                    ...invoicesOverview,
-                ]);
+                setCurrentPage(1);
+                getInvoicesOverview(1);
             })
             .catch((error) => {
                 console.error(error);
@@ -303,15 +302,14 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             total: totalOfItemsPrices,
             dueDate: formattedDueDate,
         };
-        console.log(invoiceDetails);
         const savePromise = axiosPrivate
             .post("/invoice", {
                 invoiceDetails,
             })
             .then((response) => {
-                console.log(response?.data?.invoices);
+                console.log(response?.data);
+                setCurrentPage(1);
                 getInvoicesOverview(1);
-                // setInvoicesOverview(response?.data?.invoices);
                 onClose();
                 edit == "true" || actions.resetForm();
             })

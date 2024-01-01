@@ -12,22 +12,22 @@ export const InvoicesOverviewProvider = ({ children }) => {
     const [isCompanyDetails, setIsCompanyDetails] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    const [showAddCompanyDetails, setShowAddCompanyDetails] = useState(false);
 
     const getInvoicesOverview = (page) => {
-        console.log("Calling invoices overview api");
         axiosPrivate
             .get("/invoice/overview", { params: { page } })
             .then((response) => {
-                setInvoicesOverview((prev) => ({
-                    ...prev,
-                    [page]: response?.data?.invoices,
-                }));
                 setIsCompanyDetails(response?.data?.company);
                 setInvoicesOverview(response?.data?.invoices);
                 setTotalInvoices(response?.data?.totalInvoices);
                 setPages(response?.data?.pages);
                 setIsLoading(false);
-                console.log(response);
+                if (response?.data?.company) {
+                    setShowAddCompanyDetails(false);
+                } else {
+                    setShowAddCompanyDetails(true);
+                }
             })
             .catch((error) => {
                 console.error(error);
@@ -36,7 +36,7 @@ export const InvoicesOverviewProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        location.pathname === "/" && getInvoicesOverview(1);
+        location.pathname === "/" && getInvoicesOverview(currentPage || 1);
     }, [location]);
 
     return (
@@ -52,6 +52,7 @@ export const InvoicesOverviewProvider = ({ children }) => {
                 setCurrentPage,
                 totalInvoices,
                 isLoading,
+                showAddCompanyDetails,
             }}
         >
             {children}

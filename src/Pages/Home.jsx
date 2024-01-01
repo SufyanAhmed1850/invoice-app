@@ -19,6 +19,7 @@ const Home = () => {
         setCurrentPage,
         totalInvoices,
         pages,
+        showAddCompanyDetails,
     } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
@@ -49,7 +50,7 @@ const Home = () => {
                             onClick={toggleInvoicePanel}
                             img={addInvoiceIcon}
                         />
-                        {!isCompanyDetails && (
+                        {showAddCompanyDetails && (
                             <p onClick={() => navigate("/profile-details")}>
                                 Add <span>Company Details</span>
                             </p>
@@ -60,23 +61,18 @@ const Home = () => {
                 {invoicesOverview?.length > 0 ? (
                     <>
                         <div className="invoices-main">
-                            <AnimatePresence>
+                            <AnimatePresence mode="popLayout">
                                 {invoicesOverview &&
                                     invoicesOverview.map(
                                         (invoiceOverview, index) => (
                                             <motion.div
-                                                layout
                                                 key={
                                                     invoiceOverview.invoiceNumber
                                                 }
-                                                initial={{ opacity: 0, y: -10 }}
+                                                initial={{ opacity: 0, y: -25 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 10 }}
+                                                exit={{ opacity: 0, y: 25 }}
                                                 transition={{
-                                                    layout: {
-                                                        duration: 0.7,
-                                                        type: "spring",
-                                                    },
                                                     duration: 0.2,
                                                     delay: index * 0.05,
                                                 }}
@@ -106,9 +102,9 @@ const Home = () => {
                                     )}
                             </AnimatePresence>
                         </div>
-                        {/* {pages > 1 && ( */}
                         <Pagination
-                            sx={{ paddingBottom: "64px" }}
+                            page={currentPage}
+                            sx={{ paddingBottom: "32px" }}
                             count={pages}
                             onChange={(event, page) => {
                                 if (currentPage !== page) {
@@ -117,7 +113,6 @@ const Home = () => {
                                 }
                             }}
                         />
-                        {/* )} */}
                     </>
                 ) : (
                     <div className="empty-invoices">

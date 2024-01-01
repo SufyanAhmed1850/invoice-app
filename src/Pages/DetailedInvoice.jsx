@@ -19,10 +19,7 @@ const DetailedInvoice = () => {
     const { invoiceDetails, setInvoiceNum, setInvoiceDetails } = useContext(
         invoiceDetailsContext,
     );
-
-    const { invoicesOverview, setInvoicesOverview } = useContext(
-        invoicesOverviewContext,
-    );
+    const { setCurrentPage } = useContext(invoicesOverviewContext);
     const navigate = useNavigate();
     const [showDialog, setShowDialog] = useState(false);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
@@ -45,10 +42,13 @@ const DetailedInvoice = () => {
             .delete(`/invoice/delete/${_id}`)
             .then((response) => {
                 console.log(response);
+                setCurrentPage(1);
+                navigate("/");
                 const updatedInvoiceDetails = { ...invoiceDetails };
                 delete updatedInvoiceDetails[invoiceNumber];
-                navigate("/");
-                setInvoiceDetails(updatedInvoiceDetails);
+                setTimeout(() => {
+                    setInvoiceDetails(updatedInvoiceDetails);
+                }, 1000);
             })
             .catch((error) => {
                 console.error(error);
