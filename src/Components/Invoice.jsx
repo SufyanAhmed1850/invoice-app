@@ -7,14 +7,11 @@ import iconArrowRight from "../assets/images/icon-arrow-right.svg";
 
 const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {
     const navigate = useNavigate();
-
+    
     return (
         <>
             <motion.div
-                whileTap={{ scale: 1 }}
-                whileHover={{
-                    scale: 1.01,
-                }}
+                whileTap={{ scale: 0.993 }}
                 onClick={() => navigate(`/invoice/${invoiceNumber}`)}
                 className="invoice"
             >

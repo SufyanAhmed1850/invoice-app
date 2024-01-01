@@ -18,9 +18,8 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         invoiceDetailsContext,
     );
 
-    const { invoicesOverview, setInvoicesOverview } = useContext(
-        invoicesOverviewContext,
-    );
+    const { invoicesOverview, setInvoicesOverview, getInvoicesOverview } =
+        useContext(invoicesOverviewContext);
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const handleMouseOver = (index) => {
@@ -132,7 +131,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             items: values.items,
             status: "Draft",
         };
-        // console.log(draftFormValues);
         onClose();
         resetForm();
         saveDraft(draftFormValues);
@@ -239,6 +237,8 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             dueDate: formattedDueDate,
             status: "Pending",
         };
+        delete editedInvoiceDetails.sender;
+        console.log("EDIT VALUES: ", editedInvoiceDetails);
 
         const editPromise = axiosPrivate
             .put("/invoice/edit", editedInvoiceDetails)
@@ -249,23 +249,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                     ...invoiceDetails,
                     [invoiceNumber]: editedInvoiceDetails,
                 });
-                const indexToUpdate = invoicesOverview.findIndex(
-                    (index) => index.invoiceNumber == invoiceNumber,
-                );
-                setInvoicesOverview(
-                    invoicesOverview.map((item, index) => {
-                        if (index === indexToUpdate) {
-                            return {
-                                ...item,
-                                clientName: editedInvoiceDetails.clientName,
-                                dueDate: editedInvoiceDetails.dueDate,
-                                total: editedInvoiceDetails.total,
-                                status: editedInvoiceDetails.status
-                            };
-                        }
-                        return item;
-                    }),
-                );
                 edit == "true" || actions.resetForm();
             })
             .catch((error) => {
@@ -326,11 +309,9 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                 invoiceDetails,
             })
             .then((response) => {
-                console.log(response?.data?.invoice);
-                setInvoicesOverview([
-                    response?.data?.invoice,
-                    ...invoicesOverview,
-                ]);
+                console.log(response?.data?.invoices);
+                getInvoicesOverview(1);
+                // setInvoicesOverview(response?.data?.invoices);
                 onClose();
                 edit == "true" || actions.resetForm();
             })

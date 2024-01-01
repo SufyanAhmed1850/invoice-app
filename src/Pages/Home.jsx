@@ -1,13 +1,25 @@
 import "./css/home.css";
-import { useState, useContext } from "react";
-import invoicesOverviewContext from "../context/invoiceOverview";
-import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
-import Invoice from "../Components/Invoice";
+import { useState, useContext, useEffect } from "react";
+import { Pagination } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
+import invoicesOverviewContext from "../context/invoiceOverview";
+import Invoice from "../Components/Invoice";
 import InvoicePanel from "../Components/InvoicePanel";
 import Button from "../Components/Button";
+import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
-    const { invoicesOverview } = useContext(invoicesOverviewContext);
+    const navigate = useNavigate();
+    const {
+        invoicesOverview,
+        isCompanyDetails,
+        getInvoicesOverview,
+        currentPage,
+        setCurrentPage,
+        totalInvoices,
+        pages,
+    } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
         setShowInvoicePanel(!showInvoicePanel);
@@ -24,63 +36,89 @@ const Home = () => {
                 <div className="invoices-head">
                     <div className="invoices-title">
                         <h1>Invoices</h1>
-                        {invoicesOverview?.length > 0 ? (
-                            <p>
-                                There are {invoicesOverview?.length} total
-                                invoices
+                        <p>
+                            {totalInvoices > 0
+                                ? `There are ${totalInvoices} total invoices`
+                                : "No invoices"}
+                        </p>
+                    </div>
+                    <div className="new-invoice-btn-container">
+                        <Button
+                            disabled={!isCompanyDetails && true}
+                            text="New Invoice"
+                            onClick={toggleInvoicePanel}
+                            img={addInvoiceIcon}
+                        />
+                        {!isCompanyDetails && (
+                            <p onClick={() => navigate("/profile-details")}>
+                                Add <span>Company Details</span>
                             </p>
-                        ) : (
-                            <p>No invoices</p>
                         )}
                     </div>
-                    <Button
-                        text="New Invoice"
-                        onClick={toggleInvoicePanel}
-                        img={addInvoiceIcon}
-                    />
                 </div>
+
                 {invoicesOverview?.length > 0 ? (
-                    <div className="invoices-main">
-                        <AnimatePresence>
-                            {invoicesOverview &&
-                                invoicesOverview.map(
-                                    (invoiceOverview, index) => (
-                                        <motion.div
-                                            layout
-                                            key={invoiceOverview.invoiceNumber}
-                                            initial={{ opacity: 0, y: -10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 10 }}
-                                            transition={{
-                                                layout: {
-                                                    duration: 0.7,
-                                                    type: "spring",
-                                                },
-                                                duration: 0.2,
-                                                delay: index * 0.05,
-                                            }}
-                                        >
-                                            <Invoice
+                    <>
+                        <div className="invoices-main">
+                            <AnimatePresence>
+                                {invoicesOverview &&
+                                    invoicesOverview.map(
+                                        (invoiceOverview, index) => (
+                                            <motion.div
+                                                layout
                                                 key={
                                                     invoiceOverview.invoiceNumber
                                                 }
-                                                invoiceNumber={
-                                                    invoiceOverview.invoiceNumber
-                                                }
-                                                name={
-                                                    invoiceOverview.clientName
-                                                }
-                                                total={invoiceOverview.total}
-                                                dueDate={
-                                                    invoiceOverview.dueDate
-                                                }
-                                                status={invoiceOverview.status}
-                                            />
-                                        </motion.div>
-                                    ),
-                                )}
-                        </AnimatePresence>
-                    </div>
+                                                initial={{ opacity: 0, y: -10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 10 }}
+                                                transition={{
+                                                    layout: {
+                                                        duration: 0.7,
+                                                        type: "spring",
+                                                    },
+                                                    duration: 0.2,
+                                                    delay: index * 0.05,
+                                                }}
+                                            >
+                                                <Invoice
+                                                    key={
+                                                        invoiceOverview.invoiceNumber
+                                                    }
+                                                    invoiceNumber={
+                                                        invoiceOverview.invoiceNumber
+                                                    }
+                                                    name={
+                                                        invoiceOverview.clientName
+                                                    }
+                                                    total={
+                                                        invoiceOverview.total
+                                                    }
+                                                    dueDate={
+                                                        invoiceOverview.dueDate
+                                                    }
+                                                    status={
+                                                        invoiceOverview.status
+                                                    }
+                                                />
+                                            </motion.div>
+                                        ),
+                                    )}
+                            </AnimatePresence>
+                        </div>
+                        {/* {pages > 1 && ( */}
+                        <Pagination
+                            sx={{ paddingBottom: "64px" }}
+                            count={pages}
+                            onChange={(event, page) => {
+                                if (currentPage !== page) {
+                                    setCurrentPage(page);
+                                    getInvoicesOverview(page);
+                                }
+                            }}
+                        />
+                        {/* )} */}
+                    </>
                 ) : (
                     <div className="empty-invoices">
                         <img

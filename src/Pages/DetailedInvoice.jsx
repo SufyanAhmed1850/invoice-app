@@ -16,8 +16,7 @@ import toast from "react-hot-toast";
 
 const DetailedInvoice = () => {
     const { invoiceNumber } = useParams();
-    const { setInvoiceNum } = useContext(invoiceDetailsContext);
-    const { invoiceDetails, setInvoiceDetails } = useContext(
+    const { invoiceDetails, setInvoiceNum, setInvoiceDetails } = useContext(
         invoiceDetailsContext,
     );
 
@@ -48,11 +47,6 @@ const DetailedInvoice = () => {
                 console.log(response);
                 const updatedInvoiceDetails = { ...invoiceDetails };
                 delete updatedInvoiceDetails[invoiceNumber];
-                setInvoicesOverview((prevInvoicesOverview) =>
-                    prevInvoicesOverview.filter(
-                        (item) => item.invoiceNumber != invoiceNumber,
-                    ),
-                );
                 navigate("/");
                 setInvoiceDetails(updatedInvoiceDetails);
             })
@@ -68,9 +62,6 @@ const DetailedInvoice = () => {
             .patch("/invoice/status", { _id })
             .then((response) => {
                 console.log(response);
-                const indexToUpdate = invoicesOverview.findIndex(
-                    (index) => index.invoiceNumber == invoiceNumber,
-                );
                 setInvoiceDetails({
                     ...invoiceDetails,
                     [invoiceNumber]: {
@@ -78,18 +69,6 @@ const DetailedInvoice = () => {
                         status: "Paid",
                     },
                 });
-
-                setInvoicesOverview(
-                    invoicesOverview.map((item, index) => {
-                        if (index === indexToUpdate) {
-                            return {
-                                ...item,
-                                status: "Paid",
-                            };
-                        }
-                        return item;
-                    }),
-                );
             })
             .catch((error) => {
                 console.error(error);

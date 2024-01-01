@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { axiosPrivate } from "../api/axios";
 import companyDetailsContext from "../context/companyDetails.jsx";
+import invoicesOverviewContext from "../context/invoiceOverview.jsx";
 import { companyDetailsSchema } from "../schemas/companyDetailsSchema.jsx";
 import toast from "react-hot-toast";
 import Input from "../Components/Input";
@@ -11,10 +12,11 @@ import Button from "../Components/Button.jsx";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 
 const CompanyDetails = () => {
+    const navigate = useNavigate();
     const { companyDetails, setCompanyDetails } = useContext(
         companyDetailsContext,
     );
-    const navigate = useNavigate();
+    const { setIsCompanyDetails } = useContext(invoicesOverviewContext);
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -49,6 +51,7 @@ const CompanyDetails = () => {
             })
             .then((response) => {
                 setCompanyDetails(values);
+                setIsCompanyDetails(true);
                 console.log(response);
             })
             .catch((error) => {

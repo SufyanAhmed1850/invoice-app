@@ -10,14 +10,14 @@ import { CompanyDetailsProvider } from "./context/companyDetails.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
-        <CompanyDetailsProvider>
-            <InvoicesOverviewProvider>
+        <InvoicesOverviewProvider>
+            <CompanyDetailsProvider>
                 <InvoiceDetailsProvider>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <App />
                     </LocalizationProvider>
                 </InvoiceDetailsProvider>
-            </InvoicesOverviewProvider>
-        </CompanyDetailsProvider>
+            </CompanyDetailsProvider>
+        </InvoicesOverviewProvider>
     </BrowserRouter>,
 );

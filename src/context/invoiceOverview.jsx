@@ -5,17 +5,29 @@ import { useLocation } from "react-router-dom";
 const invoicesOverviewContext = createContext();
 
 export const InvoicesOverviewProvider = ({ children }) => {
-    const [invoicesOverview, setInvoicesOverview] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
+    const [invoicesOverview, setInvoicesOverview] = useState(null);
+    const [pages, setPages] = useState(false);
+    const [totalInvoices, setTotalInvoices] = useState(false);
+    const [isCompanyDetails, setIsCompanyDetails] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const getInvoicesOverview = () => {
+    const getInvoicesOverview = (page) => {
+        console.log("Calling invoices overview api");
         axiosPrivate
-            .get("/invoice/overview")
+            .get("/invoice/overview", { params: { page } })
             .then((response) => {
+                setInvoicesOverview((prev) => ({
+                    ...prev,
+                    [page]: response?.data?.invoices,
+                }));
+                setIsCompanyDetails(response?.data?.company);
                 setInvoicesOverview(response?.data?.invoices);
+                setTotalInvoices(response?.data?.totalInvoices);
+                setPages(response?.data?.pages);
                 setIsLoading(false);
-                console.log(response)
+                console.log(response);
             })
             .catch((error) => {
                 console.error(error);
@@ -24,14 +36,23 @@ export const InvoicesOverviewProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        (location.pathname === "/" ||
-            location.pathname.startsWith("/invoice/")) &&
-            (invoicesOverview || getInvoicesOverview());
-    }, [location, invoicesOverview]);
+        location.pathname === "/" && getInvoicesOverview(1);
+    }, [location]);
 
     return (
         <invoicesOverviewContext.Provider
-            value={{ invoicesOverview, isLoading, setInvoicesOverview }}
+            value={{
+                pages,
+                invoicesOverview,
+                setInvoicesOverview,
+                getInvoicesOverview,
+                isCompanyDetails,
+                setIsCompanyDetails,
+                currentPage,
+                setCurrentPage,
+                totalInvoices,
+                isLoading,
+            }}
         >
             {children}
         </invoicesOverviewContext.Provider>
