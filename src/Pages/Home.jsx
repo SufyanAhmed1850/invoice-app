@@ -7,12 +7,20 @@ import Invoice from "../Components/Invoice";
 import InvoicePanel from "../Components/InvoicePanel";
 import Button from "../Components/Button";
 import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import DropDown from "../Components/DropDown";
+import IconInput from "../Components/IconInput";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { axiosPrivate } from "../api/axios";
+import IconClear from "../assets/images/icon-clear.svg";
 
 const Home = () => {
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
     const {
         invoicesOverview,
+        setInvoicesOverview,
         isCompanyDetails,
         getInvoicesOverview,
         currentPage,
@@ -20,10 +28,60 @@ const Home = () => {
         totalInvoices,
         pages,
         showAddCompanyDetails,
+        filterOptions,
+        setFilterOptions,
     } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
         setShowInvoicePanel(!showInvoicePanel);
+    };
+
+    const invoiceNumberQuery = searchParams.get("invoiceNumber");
+    useEffect(() => {
+        if (invoiceNumberQuery) {
+            console.log(invoiceNumberQuery);
+            searchInvoice(invoiceNumberQuery);
+        }
+    }, []);
+
+    const validationSchema = yup.object().shape({
+        invoiceNumber: yup.string().required("Required"),
+    });
+    const { values, errors, handleChange, handleSubmit, resetForm } = useFormik(
+        {
+            initialValues: {
+                invoiceNumber: "",
+            },
+            validationSchema: validationSchema,
+            onSubmit: (values, actions) => {
+                console.log("Form values:", values);
+                searchInvoice();
+            },
+        },
+    );
+    const searchInvoice = (invoiceNumberQuery) => {
+        axiosPrivate
+            .get(
+                `/search?invoiceNumber=${
+                    invoiceNumberQuery || values.invoiceNumber
+                }`,
+            )
+            .then((response) => {
+                console.log("Invoice Number", response);
+                if (!invoiceNumberQuery) {
+                    setSearchParams(values);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                return Promise.reject(error);
+            });
+    };
+
+    const handleEnterKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit();
+        }
     };
 
     return (
@@ -34,27 +92,66 @@ const Home = () => {
                 edit="false"
             />
             <div className="invoices-parent">
-                <div className="invoices-head">
-                    <div className="invoices-title">
-                        <h1>Invoices</h1>
-                        <p>
-                            {totalInvoices > 0
-                                ? `There are ${totalInvoices} total invoices`
-                                : "No invoices"}
-                        </p>
-                    </div>
-                    <div className="new-invoice-btn-container">
-                        <Button
-                            disabled={!isCompanyDetails && true}
-                            text="New Invoice"
-                            onClick={toggleInvoicePanel}
-                            img={addInvoiceIcon}
-                        />
-                        {showAddCompanyDetails && (
-                            <p onClick={() => navigate("/profile-details")}>
-                                Add <span>Company Details</span>
+                <div className="invoice-head-parent">
+                    <div className="invoices-head">
+                        <div className="invoices-title">
+                            <h1>Invoices</h1>
+                            <p>
+                                {totalInvoices > 0
+                                    ? `There are ${totalInvoices} total invoices`
+                                    : "No invoices"}
                             </p>
-                        )}
+                        </div>
+                        <div className="new-invoice-btn-container">
+                            <Button
+                                disabled={!isCompanyDetails && true}
+                                text="New Invoice"
+                                onClick={toggleInvoicePanel}
+                                img={addInvoiceIcon}
+                            />
+                            {showAddCompanyDetails && (
+                                <p onClick={() => navigate("/profile-details")}>
+                                    Add <span>Company Details</span>
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                    <div className="search-invoice">
+                        <div className="search-invoice-left">
+                            <IconInput
+                                value={values.invoiceNumber}
+                                onChange={handleChange}
+                                id="invoiceNumber"
+                                onClick={handleSubmit}
+                                onKeyDown={handleEnterKeyPress}
+                                error={errors.invoiceNumber}
+                            />
+                            <DropDown />
+                        </div>
+                        <div
+                            onClick={() => {
+                                // Check if all checked values are already true
+                                if (
+                                    !filterOptions.every(
+                                        (option) => option.checked,
+                                    )
+                                ) {
+                                    // If not all true, update the state
+                                    setFilterOptions(
+                                        filterOptions.map((option) => ({
+                                            ...option,
+                                            checked: true,
+                                        })),
+                                    );
+                                }
+                            }}
+                            className="search-invoice-right"
+                        >
+                            <motion.h3 whileHover={{ letterSpacing: "1px" }}>
+                                Reset
+                            </motion.h3>
+                            <img src={IconClear} alt="clear" />
+                        </div>
                     </div>
                 </div>
 

@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import { axiosPrivate } from "../api/axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const invoicesOverviewContext = createContext();
 
 export const InvoicesOverviewProvider = ({ children }) => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
     const [invoicesOverview, setInvoicesOverview] = useState(null);
     const [pages, setPages] = useState(false);
@@ -13,10 +14,24 @@ export const InvoicesOverviewProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [showAddCompanyDetails, setShowAddCompanyDetails] = useState(false);
+    const [filterOptions, setFilterOptions] = useState([
+        {
+            text: "Draft",
+            checked: searchParams.get("draft") ? false : true,
+        },
+        {
+            text: "Pending",
+            checked: searchParams.get("pending") ? false : true,
+        },
+        {
+            text: "Paid",
+            checked: searchParams.get("paid") ? false : true,
+        },
+    ]);
 
     const getInvoicesOverview = (page) => {
         axiosPrivate
-            .get("/invoice/overview", { params: { page } })
+            .post("/invoice/overview", { page, filterOptions })
             .then((response) => {
                 setIsCompanyDetails(response?.data?.company);
                 setInvoicesOverview(response?.data?.invoices);
@@ -53,6 +68,8 @@ export const InvoicesOverviewProvider = ({ children }) => {
                 totalInvoices,
                 isLoading,
                 showAddCompanyDetails,
+                filterOptions,
+                setFilterOptions,
             }}
         >
             {children}
