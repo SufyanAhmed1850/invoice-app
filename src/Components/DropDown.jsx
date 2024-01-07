@@ -1,4 +1,4 @@
-import "./css/DropDown.css";
+import "./css/dropDown.css";
 import { useEffect, useState, useRef, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import downArrow from "../assets/images/down-arrow.svg";
