@@ -20,9 +20,12 @@
     z-index: 80;
 }
 
+.invoice-head-parent {
+    background-color: var(--11);
+}
+
 .invoices-head {
     width: 100%;
-    background-color: var(--11);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -99,4 +102,10 @@
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+}
+.search-invoice-right {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    color: var(--8);
 }

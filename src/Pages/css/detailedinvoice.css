@@ -70,6 +70,7 @@
 .invoice-details-vendor-info {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 8px;
 }
 
@@ -124,6 +125,12 @@
 }
 
 .invoice-details-client-address {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.invoice-details-client-email-skeleton {
     display: flex;
     flex-direction: column;
     gap: 8px;

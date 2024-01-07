@@ -1,6 +1,6 @@
 import "./css/home.css";
 import { useState, useContext, useEffect } from "react";
-import { Pagination } from "@mui/material";
+import { Pagination, Skeleton } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import invoicesOverviewContext from "../context/invoiceOverview";
 import Invoice from "../Components/Invoice";
@@ -22,6 +22,7 @@ const Home = () => {
         invoicesOverview,
         setInvoicesOverview,
         isCompanyDetails,
+        setIsCompanyDetails,
         getInvoicesOverview,
         currentPage,
         setCurrentPage,
@@ -30,6 +31,7 @@ const Home = () => {
         showAddCompanyDetails,
         filterOptions,
         setFilterOptions,
+        isLoading,
     } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
@@ -41,8 +43,19 @@ const Home = () => {
         if (invoiceNumberQuery) {
             console.log(invoiceNumberQuery);
             searchInvoice(invoiceNumberQuery);
+            axiosPrivate
+                .get(`/search?invoiceNumber=${invoiceNumberQuery}`)
+                .then((response) => {
+                    setIsCompanyDetails(response?.data?.company);
+                    setInvoicesOverview([response?.data?.invoice]);
+                    console.log("Invoice Number", response);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    return Promise.reject(error);
+                });
         }
-    }, []);
+    }, [invoiceNumberQuery]);
 
     const validationSchema = yup.object().shape({
         invoiceNumber: yup.string().required("Required"),
@@ -60,22 +73,9 @@ const Home = () => {
         },
     );
     const searchInvoice = (invoiceNumberQuery) => {
-        axiosPrivate
-            .get(
-                `/search?invoiceNumber=${
-                    invoiceNumberQuery || values.invoiceNumber
-                }`,
-            )
-            .then((response) => {
-                console.log("Invoice Number", response);
-                if (!invoiceNumberQuery) {
-                    setSearchParams(values);
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                return Promise.reject(error);
-            });
+        const searchValue = invoiceNumberQuery || values.invoiceNumber;
+        console.log(`Setting search parameters: ${searchValue}`);
+        setSearchParams({ invoiceNumber: searchValue });
     };
 
     const handleEnterKeyPress = (event) => {
@@ -126,9 +126,11 @@ const Home = () => {
                                 onKeyDown={handleEnterKeyPress}
                                 error={errors.invoiceNumber}
                             />
-                            <DropDown />
+
+                            {!invoiceNumberQuery && <DropDown />}
                         </div>
-                        <div
+                        <motion.div
+                            whileHover={{ letterSpacing: "1px" }}
                             onClick={() => {
                                 // Check if all checked values are already true
                                 if (
@@ -144,18 +146,26 @@ const Home = () => {
                                         })),
                                     );
                                 }
+                                setSearchParams("");
+                                resetForm();
                             }}
                             className="search-invoice-right"
                         >
-                            <motion.h3 whileHover={{ letterSpacing: "1px" }}>
-                                Reset
-                            </motion.h3>
+                            Reset
                             <img src={IconClear} alt="clear" />
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
 
-                {invoicesOverview?.length > 0 ? (
+                {isLoading ? (
+                    <div className="invoices-main">
+                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                            <div key={num}>
+                                <Invoice />
+                            </div>
+                        ))}
+                    </div>
+                ) : invoicesOverview?.length > 0 ? (
                     <>
                         <div className="invoices-main">
                             <AnimatePresence mode="popLayout">
@@ -166,7 +176,10 @@ const Home = () => {
                                                 key={
                                                     invoiceOverview.invoiceNumber
                                                 }
-                                                initial={{ opacity: 0, y: -25 }}
+                                                initial={{
+                                                    opacity: 0,
+                                                    y: -25,
+                                                }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: 25 }}
                                                 transition={{
@@ -199,17 +212,19 @@ const Home = () => {
                                     )}
                             </AnimatePresence>
                         </div>
-                        <Pagination
-                            page={currentPage}
-                            sx={{ paddingBottom: "32px" }}
-                            count={pages}
-                            onChange={(event, page) => {
-                                if (currentPage !== page) {
-                                    setCurrentPage(page);
-                                    getInvoicesOverview(page);
-                                }
-                            }}
-                        />
+                        {!invoiceNumberQuery && (
+                            <Pagination
+                                page={currentPage}
+                                sx={{ paddingBottom: "32px" }}
+                                count={pages}
+                                onChange={(event, page) => {
+                                    if (currentPage !== page) {
+                                        setCurrentPage(page);
+                                        getInvoicesOverview(page);
+                                    }
+                                }}
+                            />
+                        )}
                     </>
                 ) : (
                     <div className="empty-invoices">

@@ -1,6 +1,6 @@
 import "./css/companydetails.css";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { axiosPrivate } from "../api/axios";
 import companyDetailsContext from "../context/companyDetails.jsx";
@@ -10,13 +10,21 @@ import toast from "react-hot-toast";
 import Input from "../Components/Input";
 import Button from "../Components/Button.jsx";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
+import { Skeleton } from "@mui/material";
 
 const CompanyDetails = () => {
+    const location = useLocation();
+    const to = location?.state?.from?.redirect || "/";
     const navigate = useNavigate();
     const { companyDetails, setCompanyDetails } = useContext(
         companyDetailsContext,
     );
-    const { setIsCompanyDetails } = useContext(invoicesOverviewContext);
+    const {
+        invoicesOverview,
+        setIsCompanyDetails,
+        getInvoicesOverview,
+        currentPage,
+    } = useContext(invoicesOverviewContext);
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -83,6 +91,12 @@ const CompanyDetails = () => {
             },
         );
     };
+
+    const goBack = () => {
+        console.log(to);
+        to == "/" && !invoicesOverview && getInvoicesOverview(currentPage || 1);
+        navigate(to);
+    };
     return (
         <>
             <div className="company-details-parent">
@@ -91,7 +105,7 @@ const CompanyDetails = () => {
                     color="var(--8)"
                     bgColor="transparent"
                     img={leftArrowIcon}
-                    onClick={() => navigate("/")}
+                    onClick={goBack}
                 />
                 <div className="company-details-main">
                     <div className="company-details-head">

@@ -5,13 +5,13 @@ import { useLocation, useSearchParams } from "react-router-dom";
 const invoicesOverviewContext = createContext();
 
 export const InvoicesOverviewProvider = ({ children }) => {
-    const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
+    const [isLoading, setIsLoading] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
     const [invoicesOverview, setInvoicesOverview] = useState(null);
     const [pages, setPages] = useState(false);
     const [totalInvoices, setTotalInvoices] = useState(false);
     const [isCompanyDetails, setIsCompanyDetails] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [showAddCompanyDetails, setShowAddCompanyDetails] = useState(false);
     const [filterOptions, setFilterOptions] = useState([
@@ -29,7 +29,10 @@ export const InvoicesOverviewProvider = ({ children }) => {
         },
     ]);
 
+    const invoiceNumberQuery = searchParams.get("invoiceNumber");
+
     const getInvoicesOverview = (page) => {
+        !isLoading && setIsLoading(true);
         axiosPrivate
             .post("/invoice/overview", { page, filterOptions })
             .then((response) => {
@@ -37,7 +40,6 @@ export const InvoicesOverviewProvider = ({ children }) => {
                 setInvoicesOverview(response?.data?.invoices);
                 setTotalInvoices(response?.data?.totalInvoices);
                 setPages(response?.data?.pages);
-                setIsLoading(false);
                 if (response?.data?.company) {
                     setShowAddCompanyDetails(false);
                 } else {
@@ -45,14 +47,22 @@ export const InvoicesOverviewProvider = ({ children }) => {
                 }
             })
             .catch((error) => {
+                setInvoicesOverview(null);
+                setTotalInvoices(0);
+                setPages(0);
                 console.error(error);
                 return Promise.reject(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
     useEffect(() => {
-        location.pathname === "/" && getInvoicesOverview(currentPage || 1);
-    }, [location]);
+        if (!invoiceNumberQuery) {
+            location.pathname === "/" && getInvoicesOverview(currentPage || 1);
+        }
+    }, [filterOptions, invoiceNumberQuery]);
 
     return (
         <invoicesOverviewContext.Provider

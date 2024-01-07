@@ -1,10 +1,11 @@
 import "./css/input.css";
-import { useState } from "react";
-import { Select, MenuItem } from "@mui/material";
+import { useContext, useState } from "react";
+import { Select, MenuItem, Skeleton } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
+import companyDetailsContext from "../context/companyDetails";
+import { useLocation } from "react-router-dom";
 
 const Input = ({
     label,
@@ -20,6 +21,9 @@ const Input = ({
     flex,
     setFieldValue,
 }) => {
+    const { pathname } = useLocation();
+    const isPathCompanyDetails = pathname === "/profile-details";
+    const { isCompanyLoading } = useContext(companyDetailsContext);
     const [selectValue, setSelectValue] = useState(null);
     const inputError = error && touched;
     const formattedValue = typeof value === "string" ? dayjs(value) : value;
@@ -30,18 +34,50 @@ const Input = ({
         >
             {label && (
                 <div className="label-head">
-                    <p
-                        style={{
-                            color: error && touched ? "var(--9)" : "var(--7)",
-                        }}
-                    >
-                        {label}
-                    </p>
-                    {error && touched && (
-                        <p style={{ color: "var(--9)" }}>{error}</p>
+                    {isPathCompanyDetails ? (
+                        isCompanyLoading ? (
+                            <Skeleton
+                                variant="rounded"
+                                width={90}
+                                height={14}
+                            />
+                        ) : (
+                            <>
+                                <p
+                                    style={{
+                                        color:
+                                            error && touched
+                                                ? "var(--9)"
+                                                : "var(--7)",
+                                    }}
+                                >
+                                    {label}
+                                </p>
+                                {error && touched && (
+                                    <p style={{ color: "var(--9)" }}>{error}</p>
+                                )}
+                            </>
+                        )
+                    ) : (
+                        <>
+                            <p
+                                style={{
+                                    color:
+                                        error && touched
+                                            ? "var(--9)"
+                                            : "var(--7)",
+                                }}
+                            >
+                                {label}
+                            </p>
+                            {error && touched && (
+                                <p style={{ color: "var(--9)" }}>{error}</p>
+                            )}
+                        </>
                     )}
                 </div>
             )}
+
             {label === "Invoice Date" ? (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
@@ -78,6 +114,24 @@ const Input = ({
                     <MenuItem value={14}>Net 14 Days</MenuItem>
                     <MenuItem value={30}>Net 30 Days</MenuItem>
                 </Select>
+            ) : isPathCompanyDetails ? (
+                isCompanyLoading ? (
+                    <Skeleton variant="rounded" height={45} />
+                ) : (
+                    <input
+                        className={inputError ? "error" : ""}
+                        style={
+                            inputError ? { outline: "1px solid var(--9)" } : {}
+                        }
+                        value={value}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        onKeyDown={onKeyDown || null}
+                        id={id}
+                        type={type}
+                        placeholder={placeholder || ""}
+                    />
+                )
             ) : (
                 <input
                     className={inputError ? "error" : ""}

@@ -18,7 +18,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         invoiceDetailsContext,
     );
 
-    const { getInvoicesOverview, setCurrentPage } = useContext(
+    const { getInvoicesOverview, currentPage, setCurrentPage } = useContext(
         invoicesOverviewContext,
     );
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -242,6 +242,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         const editPromise = axiosPrivate
             .put("/invoice/edit", editedInvoiceDetails)
             .then((response) => {
+                getInvoicesOverview(currentPage);
                 onClose();
                 console.log(response);
                 setInvoiceDetails({

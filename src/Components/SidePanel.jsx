@@ -37,7 +37,25 @@ const SidePanel = () => {
                     </IconButton>
                     <div className="side-panel-profile">
                         <IconButton
-                            onClick={() => navigate("/profile-details")}
+                            onClick={() => {
+                                const {
+                                    pathname,
+                                    search,
+                                    hash: currentHash,
+                                } = location;
+                                navigate("/profile-details", {
+                                    state: {
+                                        from: {
+                                            pathname,
+                                            search,
+                                            hash: currentHash,
+                                            redirect: search
+                                                ? `${pathname}${search}`
+                                                : pathname,
+                                        },
+                                    },
+                                });
+                            }}
                             className="side-panel-profile-icon"
                         >
                             <img src={profileIcon} alt="Profile Avatar" />

@@ -12,6 +12,7 @@
 
 .invoice:hover {
     outline: 1px solid var(--1);
+    outline-offset: -1px;
 }
 
 .invoice-content {

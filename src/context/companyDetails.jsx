@@ -7,7 +7,7 @@ const companyDetailsContext = createContext();
 export const CompanyDetailsProvider = ({ children }) => {
     const location = useLocation();
     const [companyDetails, setCompanyDetails] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isCompanyLoading, setIsCompanyLoading] = useState(true);
     useEffect(() => {
         const getCompanyDetails = () => {
             axiosPrivate
@@ -21,7 +21,8 @@ export const CompanyDetailsProvider = ({ children }) => {
                 .catch((error) => {
                     console.error(error);
                     return Promise.reject(error);
-                });
+                })
+                .finally(() => setIsCompanyLoading(false));
         };
         location.pathname == "/profile-details" &&
             (companyDetails || getCompanyDetails());
@@ -31,7 +32,7 @@ export const CompanyDetailsProvider = ({ children }) => {
             value={{
                 companyDetails,
                 setCompanyDetails,
-                isLoading,
+                isCompanyLoading,
             }}
         >
             {children}

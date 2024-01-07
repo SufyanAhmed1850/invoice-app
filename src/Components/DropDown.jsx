@@ -6,8 +6,8 @@ import { useSearchParams } from "react-router-dom";
 import invoicesOverviewContext from "../context/invoiceOverview";
 
 const DropDown = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const { filterOptions, setFilterOptions } = useContext(
+    const [searchFilterParams, setSearchFilterParams] = useSearchParams();
+    const { filterOptions, setFilterOptions, setCurrentPage } = useContext(
         invoicesOverviewContext,
     );
 
@@ -46,10 +46,11 @@ const DropDown = () => {
                 params[option.text.toLowerCase()] = option.checked.toString();
             }
         });
-        setSearchParams(params);
-    }, [filterOptions, setSearchParams]);
+        setSearchFilterParams(params);
+    }, [filterOptions, setSearchFilterParams]);
 
     const handleCheckboxChange = (index) => {
+        setCurrentPage(1);
         setFilterOptions((currentOptions) => {
             const checkedCount = currentOptions.filter(
                 (option) => option.checked,
