@@ -9,6 +9,7 @@ import RequireAuth from "./Hooks/RequireAuth";
 import Auth from "./Hooks/Auth";
 import SidePanel from "./Components/SidePanel";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 
 function App() {
     const pageVariants = {
@@ -33,28 +34,45 @@ function App() {
     return (
         <>
             {!isAuthRoute && <SidePanel />}
-            <Toaster />
+            <Toaster
+                toastOptions={{
+                    error: {
+                        style: {
+                            background: "var(--12)",
+                            color: "var(--0)",
+                        },
+                        position: "bottom-center",
+                    },
+                    success: {
+                        style: {
+                            background: "var(--12)",
+                            color: "var(--0)",
+                        },
+                        position: "bottom-center",
+                    },
+                }}
+            />
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route
                         path="/"
                         element={
                             <RequireAuth>
-                                    <motion.div
-                                        style={{
-                                            width: "100%",
-                                            height: "100svh",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                        }}
-                                        initial="initial"
-                                        animate="in"
-                                        exit="out"
-                                        variants={pageVariants}
-                                        transition={pageTransition}
-                                    >
-                                        <Home />
-                                    </motion.div>
+                                <motion.div
+                                    style={{
+                                        width: "100%",
+                                        height: "100svh",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
+                                    initial="initial"
+                                    animate="in"
+                                    exit="out"
+                                    variants={pageVariants}
+                                    transition={pageTransition}
+                                >
+                                    <Home />
+                                </motion.div>
                             </RequireAuth>
                         }
                     />
@@ -62,21 +80,21 @@ function App() {
                         path="/invoice/:invoiceNumber"
                         element={
                             <RequireAuth>
-                                    <motion.div
-                                        style={{
-                                            width: "100%",
-                                            height: "100svh",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                        }}
-                                        initial="initial"
-                                        animate="in"
-                                        exit="out"
-                                        variants={pageVariants}
-                                        transition={pageTransition}
-                                    >
-                                        <DetailedInvoice />
-                                    </motion.div>
+                                <motion.div
+                                    style={{
+                                        width: "100%",
+                                        height: "100svh",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
+                                    initial="initial"
+                                    animate="in"
+                                    exit="out"
+                                    variants={pageVariants}
+                                    transition={pageTransition}
+                                >
+                                    <DetailedInvoice />
+                                </motion.div>
                             </RequireAuth>
                         }
                     />

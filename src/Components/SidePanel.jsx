@@ -32,9 +32,6 @@ const SidePanel = () => {
                     <img src={sidePanelLogoIcon} alt="Logo" />
                 </div>
                 <div className="side-panel-options">
-                    <IconButton className="side-panel-theme">
-                        <img src={darkThemeIcon} alt="Dark Theme" />
-                    </IconButton>
                     <div className="side-panel-profile">
                         <IconButton
                             onClick={() => {

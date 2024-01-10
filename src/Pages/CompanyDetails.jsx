@@ -1,5 +1,5 @@
 import "./css/companydetails.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { axiosPrivate } from "../api/axios";
@@ -10,9 +10,9 @@ import toast from "react-hot-toast";
 import Input from "../Components/Input";
 import Button from "../Components/Button.jsx";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
-import { Skeleton } from "@mui/material";
 
 const CompanyDetails = () => {
+    const [isCompanySaving, setIsCompanySaving] = useState(false);
     const location = useLocation();
     const to = location?.state?.from?.redirect || "/";
     const navigate = useNavigate();
@@ -51,6 +51,7 @@ const CompanyDetails = () => {
         handleSubmit();
     };
     const saveCompantDetails = (values, actions) => {
+        setIsCompanySaving(true);
         const companyDetails = values;
         console.log(companyDetails);
         const savePromise = axiosPrivate
@@ -58,43 +59,22 @@ const CompanyDetails = () => {
                 companyDetails,
             })
             .then((response) => {
+                toast.success("Company details saved successfully!");
                 setCompanyDetails(values);
                 setIsCompanyDetails(true);
                 console.log(response);
             })
             .catch((error) => {
                 console.error(error);
-            });
-        toast.promise(
-            savePromise,
-            {
-                loading: "Saving...",
-                success: "Saved successfully!",
-                error: (err) => err.response.data.message,
-            },
-            {
-                style: {
-                    background: "var(--8)",
-                    color: "var(--0)",
-                },
-                loading: {
-                    position: "bottom-center",
-                },
-                success: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-                error: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-            },
-        );
+                toast.error(error?.response?.data?.message || error.message);
+                return Promise.reject(error);
+            })
+            .finally(() => setIsCompanySaving(false));
     };
 
     const goBack = () => {
         console.log(to);
-        to == "/" && !invoicesOverview && getInvoicesOverview(currentPage || 1);
+        to == "/" && getInvoicesOverview(currentPage || 1);
         navigate(to);
     };
     return (
@@ -175,7 +155,11 @@ const CompanyDetails = () => {
                     </div>
                 </div>
                 <div className="company-details-save">
-                    <Button text="Save" onClick={handleSaveClick} />
+                    <Button
+                        loading={isCompanySaving}
+                        text="Save"
+                        onClick={handleSaveClick}
+                    />
                 </div>
             </div>
         </>

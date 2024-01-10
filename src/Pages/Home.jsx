@@ -18,6 +18,7 @@ import IconClear from "../assets/images/icon-clear.svg";
 const Home = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
+    console.log(searchParams);
     const {
         invoicesOverview,
         setInvoicesOverview,
@@ -32,6 +33,7 @@ const Home = () => {
         filterOptions,
         setFilterOptions,
         isLoading,
+        isFisrstLoading,
     } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
@@ -116,45 +118,72 @@ const Home = () => {
                             )}
                         </div>
                     </div>
-                    <div className="search-invoice">
-                        <div className="search-invoice-left">
-                            <IconInput
-                                value={values.invoiceNumber}
-                                onChange={handleChange}
-                                id="invoiceNumber"
-                                onClick={handleSubmit}
-                                onKeyDown={handleEnterKeyPress}
-                                error={errors.invoiceNumber}
-                            />
-
-                            {!invoiceNumberQuery && <DropDown />}
-                        </div>
-                        <motion.div
-                            whileHover={{ letterSpacing: "1px" }}
-                            onClick={() => {
-                                // Check if all checked values are already true
-                                if (
-                                    !filterOptions.every(
-                                        (option) => option.checked,
-                                    )
-                                ) {
-                                    // If not all true, update the state
-                                    setFilterOptions(
-                                        filterOptions.map((option) => ({
-                                            ...option,
-                                            checked: true,
-                                        })),
-                                    );
-                                }
-                                setSearchParams("");
-                                resetForm();
-                            }}
-                            className="search-invoice-right"
+                    {isFisrstLoading ? (
+                        <div
+                            className="search-invoice"
+                            style={{ marginBottom: 16 }}
                         >
-                            Reset
-                            <img src={IconClear} alt="clear" />
-                        </motion.div>
-                    </div>
+                            <div className="search-invoice-left">
+                                <Skeleton
+                                    animation="wave"
+                                    variant="rounded"
+                                    width={120}
+                                    height={14}
+                                />
+                                <Skeleton
+                                    animation="wave"
+                                    variant="rounded"
+                                    width={120}
+                                    height={14}
+                                />
+                            </div>
+                            <Skeleton
+                                animation="wave"
+                                variant="rounded"
+                                width={75}
+                                height={14}
+                            />
+                        </div>
+                    ) : searchParams.size != 0 ||
+                      (totalInvoices && totalInvoices > 0) ? (
+                        <div className="search-invoice">
+                            <div className="search-invoice-left">
+                                <IconInput
+                                    value={values.invoiceNumber}
+                                    onChange={handleChange}
+                                    id="invoiceNumber"
+                                    onClick={handleSubmit}
+                                    onKeyDown={handleEnterKeyPress}
+                                    error={errors.invoiceNumber}
+                                />
+
+                                {!invoiceNumberQuery && <DropDown />}
+                            </div>
+                            <motion.div
+                                whileHover={{ letterSpacing: "1px" }}
+                                onClick={() => {
+                                    if (
+                                        !filterOptions.every(
+                                            (option) => option.checked,
+                                        )
+                                    ) {
+                                        setFilterOptions(
+                                            filterOptions.map((option) => ({
+                                                ...option,
+                                                checked: true,
+                                            })),
+                                        );
+                                    }
+                                    setSearchParams("");
+                                    resetForm();
+                                }}
+                                className="search-invoice-right"
+                            >
+                                Reset
+                                <img src={IconClear} alt="clear" />
+                            </motion.div>
+                        </div>
+                    ) : null}
                 </div>
 
                 {isLoading ? (
@@ -176,15 +205,13 @@ const Home = () => {
                                                 key={
                                                     invoiceOverview.invoiceNumber
                                                 }
-                                                initial={{
-                                                    opacity: 0,
-                                                    y: -25,
-                                                }}
+                                                initial={{ opacity: 0, y: -25 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: 25 }}
                                                 transition={{
-                                                    duration: 0.2,
+                                                    duration: 0.25,
                                                     delay: index * 0.05,
+                                                    ease: [0.83, 0, 0.17, 1],
                                                 }}
                                             >
                                                 <Invoice

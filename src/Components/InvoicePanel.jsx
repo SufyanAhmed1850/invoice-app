@@ -14,6 +14,8 @@ import Button from "./Button.jsx";
 import toast from "react-hot-toast";
 
 const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
+    const [draftLoading, setDraftLoading] = useState(false);
+    const [saveLoading, setSaveLoading] = useState(false);
     const { invoiceDetails, setInvoiceDetails } = useContext(
         invoiceDetailsContext,
     );
@@ -169,7 +171,8 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             dueDate: formattedDueDate,
         };
         console.log(invoiceDetails);
-        const draftPromise = axiosPrivate
+        setDraftLoading(true);
+        axiosPrivate
             .post("/invoice", {
                 invoiceDetails,
             })
@@ -180,33 +183,10 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             })
             .catch((error) => {
                 console.error(error);
+                toast.error(error?.response?.data?.message || error.message);
                 return Promise.reject(error);
-            });
-        toast.promise(
-            draftPromise,
-            {
-                loading: "Saving Draft...",
-                success: "Draft Saved successfully!",
-                error: (err) => err.response.data.message,
-            },
-            {
-                style: {
-                    background: "var(--8)",
-                    color: "var(--0)",
-                },
-                loading: {
-                    position: "bottom-center",
-                },
-                success: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-                error: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-            },
-        );
+            })
+            .finally(() => setDraftLoading(false));
     };
 
     const handleSaveClick = () => {
@@ -239,9 +219,11 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         delete editedInvoiceDetails.sender;
         console.log("EDIT VALUES: ", editedInvoiceDetails);
 
-        const editPromise = axiosPrivate
+        setSaveLoading(true);
+        axiosPrivate
             .put("/invoice/edit", editedInvoiceDetails)
             .then((response) => {
+                toast.success("Invoice successfully edited!");
                 getInvoicesOverview(currentPage);
                 onClose();
                 console.log(response);
@@ -253,33 +235,10 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             })
             .catch((error) => {
                 console.error(error);
+                toast.error(error?.response?.data?.message || error.message);
                 return Promise.reject(error);
-            });
-        toast.promise(
-            editPromise,
-            {
-                loading: "Saving changes...",
-                success: "Saved changes successfully!",
-                error: (err) => err.response.data.message,
-            },
-            {
-                style: {
-                    background: "var(--8)",
-                    color: "var(--0)",
-                },
-                loading: {
-                    position: "bottom-center",
-                },
-                success: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-                error: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-            },
-        );
+            })
+            .finally(() => setSaveLoading(false));
     };
 
     const saveInvoice = (values, actions) => {
@@ -303,11 +262,14 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             total: totalOfItemsPrices,
             dueDate: formattedDueDate,
         };
+
+        setSaveLoading(true);
         const savePromise = axiosPrivate
             .post("/invoice", {
                 invoiceDetails,
             })
             .then((response) => {
+                toast.success("Invoice saved successfully!");
                 console.log(response?.data);
                 setCurrentPage(1);
                 getInvoicesOverview(1);
@@ -315,34 +277,11 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                 edit == "true" || actions.resetForm();
             })
             .catch((error) => {
+                toast.error(error?.response?.data?.message || error.message);
                 console.error(error);
                 return Promise.reject(error);
-            });
-        toast.promise(
-            savePromise,
-            {
-                loading: "Saving...",
-                success: "Saved successfully!",
-                error: (err) => err.response.data.message,
-            },
-            {
-                style: {
-                    background: "var(--8)",
-                    color: "var(--0)",
-                },
-                loading: {
-                    position: "bottom-center",
-                },
-                success: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-                error: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-            },
-        );
+            })
+            .finally(() => setSaveLoading(false));
     };
 
     const handleAddItem = () => {
@@ -683,6 +622,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                             </div>
                             <div className="invoice-panel-buttons-right">
                                 <Button
+                                    loading={draftLoading}
                                     text={
                                         edit == "true"
                                             ? "Cancel"
@@ -697,6 +637,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                     onClick={handleSaveDraftClick}
                                 />
                                 <Button
+                                    loading={saveLoading}
                                     text={
                                         edit == "true"
                                             ? "Save Changes"

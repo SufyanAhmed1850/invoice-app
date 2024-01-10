@@ -149,9 +149,15 @@
     padding: 32px;
 }
 
+.skeleton-invoice-details-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .invoice-details-footer-pricing > div {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .invoice-details-footer-pricing > div > *:not(:first-child) {
@@ -182,6 +188,31 @@
     color: var(--0);
 }
 
+.invoice-details-parent > button {
+    align-self: flex-start;
+}
+
 .invoice-details-parent > button span {
     color: #999999;
+}
+
+.invoice-details-footer-pricing-item-skeleton > div:first-child {
+    justify-content: flex-start;
+}
+
+.invoice-details-footer-pricing > div > *:nth-child(2) {
+    justify-content: center;
+}
+
+.invoice-details-footer-pricing-item-skeleton > div {
+    display: flex;
+    justify-content: flex-end;
+}
+.invoice-details-parent {
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-details-parent .empty-invoices {
+    padding: 0;
 }

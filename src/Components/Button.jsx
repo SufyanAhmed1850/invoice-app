@@ -1,9 +1,10 @@
-import { Button as MuiButton } from "@mui/material";
+import { LoadingButton as MuiButton } from "@mui/lab";
 
-const Button = ({ text, bgColor, color, onClick, img, disabled }) => {
+const Button = ({ text, bgColor, color, onClick, img, disabled, loading }) => {
     const isAddInvoiceButton = text === "New Invoice";
     return (
         <MuiButton
+            loading={loading || false}
             disabled={disabled}
             variant="contained"
             onClick={onClick || null}

@@ -4,13 +4,19 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { signupSchema } from "../schemas/signupSchema";
 import { useFormik } from "formik";
+import { useContext, useState } from "react";
 import Cookies from "js-cookie";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import logoLarge from "../assets/images/logo-invoice.svg";
+import invoicesOverviewContext from "../context/invoiceOverview";
 
 const Signup = () => {
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { setIsLoading, getInvoicesOverview } = useContext(
+        invoicesOverviewContext,
+    );
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -36,43 +42,23 @@ const Signup = () => {
     };
 
     const userSignUp = (values, actions) => {
-        const registration = axios
+        setLoading(true);
+        axios
             .post(import.meta.env.VITE_BE_URL + "/signup", values)
             .then((response) => {
                 console.log(response);
                 Cookies.set("jwt", response.data.token, { expires: 7 });
+                setIsLoading(true);
+                getInvoicesOverview(1);
                 actions.resetForm();
                 navigate("/profile-details");
             })
             .catch((error) => {
                 console.error(error);
+                toast.error(error?.response?.data?.message || error.message);
                 return Promise.reject(error);
-            });
-        toast.promise(
-            registration,
-            {
-                loading: "Signing up...",
-                success: "Signed in successfully!",
-                error: (err) => err.response.data.message,
-            },
-            {
-                style: {
-                    background: "var(--8)",
-                    color: "var(--0)",
-                },
-                loading: {
-                    position: "bottom-center",
-                },
-                success: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-                error: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-            },
-        );
+            })
+            .finally(() => setLoading(false));
     };
 
     return (
@@ -125,6 +111,7 @@ const Signup = () => {
                     />
 
                     <Button
+                        loading={loading}
                         onClick={handleSave}
                         text="Sign up"
                         bgColor={"var(--1)"}

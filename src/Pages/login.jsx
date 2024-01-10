@@ -2,17 +2,23 @@ import "./css/login.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useContext, useState } from "react";
 import { loginSchema } from "../schemas/loginSchema";
 import { useFormik } from "formik";
 import Cookies from "js-cookie";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import logoLarge from "../assets/images/logo-invoice.svg";
+import invoicesOverviewContext from "../context/invoiceOverview";
 
 const Login = () => {
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const to = location?.state?.from?.pathname || "/";
+    const { setIsLoading, getInvoicesOverview } = useContext(
+        invoicesOverviewContext,
+    );
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -37,43 +43,23 @@ const Login = () => {
     };
 
     const loginUser = (values, actions) => {
+        setLoading(true);
         const authenticate = axios
             .post(import.meta.env.VITE_BE_URL + "/login", values)
             .then((response) => {
                 console.log(response);
                 Cookies.set("jwt", response.data.token, { expires: 7 });
+                setIsLoading(true);
+                getInvoicesOverview(1);
                 actions.resetForm();
                 navigate(to, { replace: true });
             })
             .catch((error) => {
                 console.error(error);
+                toast.error(error?.response?.data?.message || error.message);
                 return Promise.reject(error);
-            });
-        toast.promise(
-            authenticate,
-            {
-                loading: "Logging in...",
-                success: "Logged in successfully!",
-                error: (err) => err.response.data.message,
-            },
-            {
-                style: {
-                    background: "var(--8)",
-                    color: "var(--0)",
-                },
-                loading: {
-                    position: "bottom-center",
-                },
-                success: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-                error: {
-                    duration: 2000,
-                    position: "bottom-center",
-                },
-            },
-        );
+            })
+            .finally(() => setLoading(false));
     };
 
     return (
@@ -113,6 +99,7 @@ const Login = () => {
                     />
 
                     <Button
+                        loading={loading}
                         onClick={handleSave}
                         text="Login"
                         bgColor={"var(--1)"}

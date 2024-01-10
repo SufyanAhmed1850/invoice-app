@@ -7,6 +7,7 @@ const invoicesOverviewContext = createContext();
 export const InvoicesOverviewProvider = ({ children }) => {
     const location = useLocation();
     const [isLoading, setIsLoading] = useState(true);
+    const [isFisrstLoading, setIsFirstLoading] = useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
     const [invoicesOverview, setInvoicesOverview] = useState(null);
     const [pages, setPages] = useState(false);
@@ -55,6 +56,7 @@ export const InvoicesOverviewProvider = ({ children }) => {
             })
             .finally(() => {
                 setIsLoading(false);
+                isFisrstLoading && setIsFirstLoading(false);
             });
     };
 
@@ -77,6 +79,8 @@ export const InvoicesOverviewProvider = ({ children }) => {
                 setCurrentPage,
                 totalInvoices,
                 isLoading,
+                isFisrstLoading,
+                setIsLoading,
                 showAddCompanyDetails,
                 filterOptions,
                 setFilterOptions,

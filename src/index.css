@@ -14,10 +14,6 @@
     font-display: swap;
 }
 
-html {
-    background-color: var(--11);
-}
-
 :root {
     --0: #ffffff;
     --1: #7c5dfa;
@@ -34,6 +30,11 @@ html {
     --12: #141625;
     --13: #f9fafe;
     --14: #373b53;
+    --skeleton-light: #ffffff33;
+}
+
+body {
+    background-color: var(--11) !important;
 }
 
 * {
@@ -97,7 +98,7 @@ span:not(.MuiButtonBase-root span) {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: -0.1px;
-    color: var(--8);
+    color: var(--7);
 }
 
 .MuiPaper-root,
@@ -313,4 +314,13 @@ span:not(.MuiButtonBase-root span) {
 :root::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: var(--5);
+}
+
+.light-skeleton.css-1hirv1y-MuiSkeleton-root {
+    background-color: var(--skeleton-light) !important;
+}
+
+/* Toast */
+.go3958317564 {
+    margin: 4px 10px 0 10px !important;
 }

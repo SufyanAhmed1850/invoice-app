@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import "./css/dialog.css";
 import Button from "./Button";
 
-const Dialog = ({ onClose, onClick }) => {
+const Dialog = ({ onClose, onClick, loading }) => {
     useEffect(() => {
         const handleOutsideClick = (e) => {
             if (!e.target.closest(".dialog")) {
@@ -43,6 +43,7 @@ const Dialog = ({ onClose, onClick }) => {
                         onClick={onClose}
                     />
                     <Button
+                        loading={loading}
                         text="Delete"
                         bgColor="var(--9)"
                         color="var(--0)"

@@ -6,9 +6,10 @@ const invoiceDetailsContext = createContext();
 export const InvoiceDetailsProvider = ({ children }) => {
     const [invoiceNum, setInvoiceNum] = useState(null);
     const [invoiceDetails, setInvoiceDetails] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isDetailLoading, setIsDetailLoading] = useState(true);
     useEffect(() => {
         const getInvoiceDetails = () => {
+            setIsDetailLoading(true);
             axiosPrivate
                 .get(`/invoice/detail/${invoiceNum}`)
                 .then((response) => {
@@ -19,12 +20,13 @@ export const InvoiceDetailsProvider = ({ children }) => {
                             [invoiceNum]: response?.data?.invoice,
                         };
                     });
-                    setIsLoading(false);
+                    setIsDetailLoading(false);
                 })
                 .catch((error) => {
                     console.error(error);
                     return Promise.reject(error);
-                });
+                })
+                .finally(() => setIsDetailLoading(false));
         };
         invoiceNum && !invoiceDetails?.[invoiceNum] && getInvoiceDetails();
     }, [invoiceNum]);
@@ -32,7 +34,7 @@ export const InvoiceDetailsProvider = ({ children }) => {
         <invoiceDetailsContext.Provider
             value={{
                 invoiceDetails,
-                isLoading,
+                isDetailLoading,
                 setInvoiceDetails,
                 setInvoiceNum,
             }}
