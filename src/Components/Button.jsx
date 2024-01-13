@@ -9,14 +9,17 @@ const Button = ({ text, bgColor, color, onClick, img, disabled, loading }) => {
             variant="contained"
             onClick={onClick || null}
             sx={{
+                fontFamily: "League Spartan",
+                fontSize: 15,
+                fontWeight: 700,
+                letterSpacing: "-0.25px",
+                lineHeight: "normal",
                 whiteSpace: "nowrap",
                 textTransform: "capitalize",
                 backgroundColor: bgColor || "var(--1)",
                 boxShadow: "none",
                 padding: isAddInvoiceButton ? "8px 16px 8px 8px" : "16px 24px",
                 borderRadius: "100px",
-                lineHeight: "normal",
-                letterSpacing: "-.25px",
                 color: color || "#FFFFFF",
                 ...(img && { gap: isAddInvoiceButton ? "16px" : "24px" }),
                 "&:hover": {

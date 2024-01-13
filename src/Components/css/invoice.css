@@ -23,8 +23,10 @@
     padding: 17px 20px 17px 24px;
     justify-content: center;
 }
-
 .invoice-content span {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
     color: var(--7);
 }
 
