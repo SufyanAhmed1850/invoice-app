@@ -109,7 +109,8 @@ const Input = ({
                                 sx: {
                                     marginTop: "12px !important",
                                     borderRadius: "8px !important",
-                                    boxShadow: "0 10px 20px 0 #48549f40 !important",
+                                    boxShadow:
+                                        "0 10px 20px 0 #48549f40 !important",
                                     ".MuiDayCalendar-header span": {
                                         fontFamily: "League Spartan !important",
                                         fontWeight: "700 !important",
@@ -127,7 +128,8 @@ const Input = ({
                                     },
                                     ".MuiPickersYear-root .css-innj4t-MuiPickersYear-yearButton":
                                         {
-                                            fontFamily: "League Spartan !important",
+                                            fontFamily:
+                                                "League Spartan !important",
                                             fontWeight: "700 !important",
                                             letterSpacing: "-0.25px !important",
                                             lineHeight: "normal !important",
@@ -135,15 +137,18 @@ const Input = ({
                                         },
                                     ".css-innj4t-MuiPickersYear-yearButton:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-innj4t-MuiPickersYear-yearButton:focus":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-sf5j28-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".MuiButtonBase-root.Mui-selected": {
                                         backgroundColor: "var(--1) !important",
@@ -159,11 +164,13 @@ const Input = ({
                                         },
                                     ".css-wylj2m-MuiButtonBase-root-MuiPickersDay-root:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-wylj2m-MuiButtonBase-root-MuiPickersDay-root:focus":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                 },
                             },
@@ -171,10 +178,12 @@ const Input = ({
                                 sx: {
                                     marginTop: "12px !important",
                                     borderRadius: "8px !important",
-                                    boxShadow: "0 10px 20px 0 #48549f40 !important",
+                                    boxShadow:
+                                        "0 10px 20px 0 #48549f40 !important",
                                     ".css-3jvy96-MuiTypography-root-MuiDatePickerToolbar-title":
                                         {
-                                            fontFamily: "League Spartan !important",
+                                            fontFamily:
+                                                "League Spartan !important",
                                             fontWeight: "700 !important",
                                             letterSpacing: "-0.25px !important",
                                             color: "var(--8) !important",
@@ -189,14 +198,16 @@ const Input = ({
                                     },
                                     ".css-1psulnz-MuiTypography-root-MuiDatePickerToolbar-title":
                                         {
-                                            fontFamily: "League Spartan !important",
+                                            fontFamily:
+                                                "League Spartan !important",
                                             fontWeight: "700 !important",
                                             letterSpacing: "-0.25px !important",
                                             color: "var(--8) !important",
                                         },
                                     ".css-1e6y48t-MuiButtonBase-root-MuiButton-root":
                                         {
-                                            fontFamily: "League Spartan !important",
+                                            fontFamily:
+                                                "League Spartan !important",
                                             fontWeight: "700 !important",
                                             fontSize: "15px !important",
                                             letterSpacing: "-0.25px !important",
@@ -219,7 +230,8 @@ const Input = ({
                                     },
                                     ".MuiPickersYear-root .css-innj4t-MuiPickersYear-yearButton":
                                         {
-                                            fontFamily: "League Spartan !important",
+                                            fontFamily:
+                                                "League Spartan !important",
                                             fontWeight: "700 !important",
                                             letterSpacing: "-0.25px !important",
                                             lineHeight: "normal !important",
@@ -227,15 +239,18 @@ const Input = ({
                                         },
                                     ".css-innj4t-MuiPickersYear-yearButton:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-innj4t-MuiPickersYear-yearButton:focus":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-sf5j28-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".MuiButtonBase-root.Mui-selected": {
                                         backgroundColor: "var(--1) !important",
@@ -251,11 +266,13 @@ const Input = ({
                                         },
                                     ".css-wylj2m-MuiButtonBase-root-MuiPickersDay-root:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-wylj2m-MuiButtonBase-root-MuiPickersDay-root:focus":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                 },
                             },
@@ -268,7 +285,8 @@ const Input = ({
                                     color: "var(--8) !important",
                                     ".MuiPickersCalendarHeader-labelContainer":
                                         {
-                                            fontFamily: "League Spartan !important",
+                                            fontFamily:
+                                                "League Spartan !important",
                                             fontWeight: "700 !important",
                                             letterSpacing: "-0.25px !important",
                                             lineHeight: "normal !important",
@@ -285,15 +303,18 @@ const Input = ({
                                     },
                                     ".css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                     ".css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton:hover":
                                         {
-                                            backgroundColor: "#7c5dfa29 !important",
+                                            backgroundColor:
+                                                "#7c5dfa29 !important",
                                         },
                                 },
                             },
@@ -312,6 +333,16 @@ const Input = ({
                             fontFamily: "League Spartan !important",
                             fontWeight: "700 !important",
                             minHeight: "0 !important",
+
+                            "& .css-1bn53lx": {
+                                fontFamily: "League Spartan !important",
+                                fontWeight: "700 !important",
+                                letterSpacing: "-0.25px !important",
+                                lineHeight: "normal !important",
+                                fontSize: "15px !important",
+                                color: "var(--8) !important",
+                                borderRadius: "4px !important",
+                            },
                             "& .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root":
                                 {
                                     fontFamily: "League Spartan !important",
@@ -415,7 +446,8 @@ const Input = ({
                         sx: {
                             "& .MuiList-root .MuiMenuItem-root:not(:last-child)":
                                 {
-                                    borderBottom: "1px solid var(--5) !important",
+                                    borderBottom:
+                                        "1px solid var(--5) !important",
                                 },
                             "& .MuiMenu-paper": {
                                 marginTop: "12px !important",
