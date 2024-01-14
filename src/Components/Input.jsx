@@ -368,7 +368,10 @@ const Input = ({
                                 {
                                     backgroundColor: "#7c5dfa29 !important",
                                 },
-
+                            "& .css-1uvydh2": {
+                                height: "auto !important",
+                                padding: "16px 20px !important",
+                            },
                             "& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input":
                                 {
                                     height: "auto !important",
