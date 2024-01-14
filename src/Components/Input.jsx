@@ -500,6 +500,9 @@ const Input = ({
                                     fontSize: "15px !important",
                                     padding: "16px 24px !important",
                                 },
+                            "& .css-r8u8y9": {
+                                padding: "0px !important",
+                            },
                             "& .css-6hp17o-MuiList-root-MuiMenu-list": {
                                 padding: "0px !important",
                             },
