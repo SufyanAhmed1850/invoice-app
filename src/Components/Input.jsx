@@ -153,6 +153,9 @@ const Input = ({
                                     ".MuiButtonBase-root.Mui-selected": {
                                         backgroundColor: "var(--1) !important",
                                     },
+                                    ".css-rhiqj0.Mui-selected": {
+                                        backgroundColor: "var(--1) !important",
+                                    },
                                     ".css-innj4t-MuiPickersYear-yearButton.Mui-selected":
                                         {
                                             backgroundColor:
@@ -222,6 +225,13 @@ const Input = ({
                                         color: "var(--8) !important",
                                     },
                                     ".MuiYearCalendar-root": {
+                                        fontFamily: "League Spartan !important",
+                                        fontWeight: "700 !important",
+                                        letterSpacing: "-0.25px !important",
+                                        lineHeight: "normal !important",
+                                        fontSize: "15px !important",
+                                    },
+                                    ".css-rhiqj0": {
                                         fontFamily: "League Spartan !important",
                                         fontWeight: "700 !important",
                                         letterSpacing: "-0.25px !important",
