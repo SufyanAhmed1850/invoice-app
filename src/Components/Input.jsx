@@ -203,11 +203,24 @@ const Input = ({
                                             color: "var(--8) !important",
                                             lineHeight: "normal !important",
                                         },
+                                    ".css-1bzq5ag": {
+                                        fontFamily: "League Spartan !important",
+                                        fontWeight: "700 !important",
+                                        letterSpacing: "-0.25px !important",
+                                        fontSize: "15px !important",
+                                        color: "var(--8) !important",
+                                    },
                                     ".css-1hbyad5-MuiTypography-root": {
                                         fontFamily: "League Spartan !important",
                                         fontWeight: "700 !important",
                                         letterSpacing: "-0.25px !important",
                                         fontSize: "15px !important",
+                                        color: "var(--8) !important",
+                                    },
+                                    ".css-1d2g9rv": {
+                                        fontFamily: "League Spartan !important",
+                                        fontWeight: "700 !important",
+                                        letterSpacing: "-0.25px !important",
                                         color: "var(--8) !important",
                                     },
                                     ".css-1psulnz-MuiTypography-root-MuiDatePickerToolbar-title":
@@ -218,6 +231,13 @@ const Input = ({
                                             letterSpacing: "-0.25px !important",
                                             color: "var(--8) !important",
                                         },
+                                    ".css-1ujsas3": {
+                                        fontFamily: "League Spartan !important",
+                                        fontWeight: "700 !important",
+                                        fontSize: "15px !important",
+                                        letterSpacing: "-0.25px !important",
+                                        color: "var(--1) !important",
+                                    },
                                     ".css-1e6y48t-MuiButtonBase-root-MuiButton-root":
                                         {
                                             fontFamily:
@@ -375,6 +395,15 @@ const Input = ({
                                     color: "var(--8) !important",
                                     borderRadius: "4px !important",
                                 },
+                            "& .css-1v4ccyo": {
+                                fontFamily: "League Spartan !important",
+                                fontWeight: "700 !important",
+                                letterSpacing: "-0.25px !important",
+                                lineHeight: "normal !important",
+                                fontSize: "15px !important",
+                                color: "var(--8) !important",
+                                borderRadius: "4px !important",
+                            },
                             "& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root":
                                 {
                                     fontFamily: "League Spartan !important",
@@ -385,7 +414,6 @@ const Input = ({
                                     color: "var(--8) !important",
                                     borderRadius: "4px !important",
                                 },
-
                             ".css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root:hover":
                                 {
                                     backgroundColor: "#7c5dfa29 !important",
@@ -399,6 +427,10 @@ const Input = ({
                                     height: "auto !important",
                                     padding: "16px 20px !important",
                                 },
+                            "& .css-1x5jdmq": {
+                                height: "auto !important",
+                                padding: "16px 20px !important",
+                            },
                             "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input":
                                 {
                                     height: "auto !important",
@@ -415,9 +447,6 @@ const Input = ({
                                 width: "19.21px !important",
                                 height: "19.21px !important",
                                 fontSize: "19.21px !important",
-                            },
-                            ".css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
-                                borderColor: "var(--5) !important",
                             },
                             ".css-igs3ac": {
                                 borderColor: "var(--5) !important",
