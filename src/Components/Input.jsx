@@ -163,6 +163,10 @@ const Input = ({
                                     ".MuiButtonBase-root.Mui-selected": {
                                         backgroundColor: "var(--1) !important",
                                     },
+
+                                    ".css-3csq7a.Mui-selected": {
+                                        color: "var(--0) !important",
+                                    },
                                     ".css-rhiqj0.Mui-selected": {
                                         backgroundColor: "var(--1) !important",
                                         color: "var(--0) !important",
