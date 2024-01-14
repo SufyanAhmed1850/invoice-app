@@ -86,7 +86,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
         },
         validationSchema: invoicePanelDataSchema,
         onSubmit: (values, actions) => {
-            console.log("Form values:", values);
             edit == "true"
                 ? editInvoice(values, actions)
                 : saveInvoice(values, actions);
@@ -170,14 +169,12 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             total: totalOfItemsPrices,
             dueDate: formattedDueDate,
         };
-        console.log(invoiceDetails);
         setDraftLoading(true);
         axiosPrivate
             .post("/invoice", {
                 invoiceDetails,
             })
             .then((response) => {
-                console.log(response?.data?.invoice);
                 setCurrentPage(1);
                 getInvoicesOverview(1);
             })
@@ -217,7 +214,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             status: "Pending",
         };
         delete editedInvoiceDetails.sender;
-        console.log("EDIT VALUES: ", editedInvoiceDetails);
 
         setSaveLoading(true);
         axiosPrivate
@@ -226,7 +222,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                 toast.success("Invoice successfully edited!");
                 getInvoicesOverview(currentPage);
                 onClose();
-                console.log(response);
                 setInvoiceDetails({
                     ...invoiceDetails,
                     [invoiceNumber]: editedInvoiceDetails,
@@ -270,7 +265,6 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             })
             .then((response) => {
                 toast.success("Invoice saved successfully!");
-                console.log(response?.data);
                 setCurrentPage(1);
                 getInvoicesOverview(1);
                 onClose();

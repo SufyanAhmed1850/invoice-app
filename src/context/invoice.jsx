@@ -13,7 +13,6 @@ export const InvoiceDetailsProvider = ({ children }) => {
             axiosPrivate
                 .get(`/invoice/detail/${invoiceNum}`)
                 .then((response) => {
-                    console.log(response.data);
                     setInvoiceDetails((prev) => {
                         return {
                             ...prev,

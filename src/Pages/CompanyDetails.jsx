@@ -36,7 +36,6 @@ const CompanyDetails = () => {
             },
             validationSchema: companyDetailsSchema,
             onSubmit: (values, actions) => {
-                console.log("Form submitted with values:", values);
                 saveCompantDetails(values, actions);
             },
             enableReinitialize: true,
@@ -53,7 +52,6 @@ const CompanyDetails = () => {
     const saveCompantDetails = (values, actions) => {
         setIsCompanySaving(true);
         const companyDetails = values;
-        console.log(companyDetails);
         const savePromise = axiosPrivate
             .post("/company-details", {
                 companyDetails,
@@ -62,7 +60,6 @@ const CompanyDetails = () => {
                 toast.success("Company details saved successfully!");
                 setCompanyDetails(values);
                 setIsCompanyDetails(true);
-                console.log(response);
             })
             .catch((error) => {
                 console.error(error);
@@ -73,7 +70,6 @@ const CompanyDetails = () => {
     };
 
     const goBack = () => {
-        console.log(to);
         to == "/" && getInvoicesOverview(currentPage || 1);
         navigate(to);
     };

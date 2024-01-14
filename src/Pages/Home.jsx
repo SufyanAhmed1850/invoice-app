@@ -18,7 +18,6 @@ import IconClear from "../assets/images/icon-clear.svg";
 const Home = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(searchParams);
     const {
         invoicesOverview,
         setInvoicesOverview,
@@ -43,14 +42,12 @@ const Home = () => {
     const invoiceNumberQuery = searchParams.get("invoiceNumber");
     useEffect(() => {
         if (invoiceNumberQuery) {
-            console.log(invoiceNumberQuery);
             searchInvoice(invoiceNumberQuery);
             axiosPrivate
                 .get(`/search?invoiceNumber=${invoiceNumberQuery}`)
                 .then((response) => {
                     setIsCompanyDetails(response?.data?.company);
                     setInvoicesOverview([response?.data?.invoice]);
-                    console.log("Invoice Number", response);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -69,14 +66,12 @@ const Home = () => {
             },
             validationSchema: validationSchema,
             onSubmit: (values, actions) => {
-                console.log("Form values:", values);
                 searchInvoice();
             },
         },
     );
     const searchInvoice = (invoiceNumberQuery) => {
         const searchValue = invoiceNumberQuery || values.invoiceNumber;
-        console.log(`Setting search parameters: ${searchValue}`);
         setSearchParams({ invoiceNumber: searchValue });
     };
 

@@ -47,7 +47,6 @@ const Login = () => {
         const authenticate = axios
             .post(import.meta.env.VITE_BE_URL + "/login", values)
             .then((response) => {
-                console.log(response);
                 Cookies.set("jwt", response.data.token, { expires: 7 });
                 setIsLoading(true);
                 getInvoicesOverview(1);

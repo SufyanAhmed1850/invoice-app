@@ -46,7 +46,6 @@ const Signup = () => {
         axios
             .post(import.meta.env.VITE_BE_URL + "/signup", values)
             .then((response) => {
-                console.log(response);
                 Cookies.set("jwt", response.data.token, { expires: 7 });
                 setIsLoading(true);
                 getInvoicesOverview(1);

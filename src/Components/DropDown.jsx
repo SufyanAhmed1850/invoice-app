@@ -11,10 +11,6 @@ const DropDown = () => {
         invoicesOverviewContext,
     );
 
-    useEffect(() => {
-        console.log(filterOptions);
-    }, [filterOptions]);
-
     const [showDropDown, setShowDropDown] = useState(false);
     const dropdownRef = useRef(null);
 

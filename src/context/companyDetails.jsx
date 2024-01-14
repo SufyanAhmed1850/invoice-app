@@ -13,7 +13,6 @@ export const CompanyDetailsProvider = ({ children }) => {
             axiosPrivate
                 .get("/company-details")
                 .then((response) => {
-                    console.log("Company Details", response);
                     setCompanyDetails(
                         response?.data?.companyDetails?.companyDetails,
                     );
