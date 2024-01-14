@@ -435,6 +435,10 @@ const Input = ({
                             borderColor: "var(--1) !important",
                             borderWidth: "1px !important",
                         },
+                        ".css-igs3ac": {
+                            borderColor: "var(--5) !important",
+                            borderWidth: "1px !important",
+                        },
                         ".css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
                             borderColor: "var(--5) !important",
                             borderWidth: "1px !important",
