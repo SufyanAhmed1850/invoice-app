@@ -382,6 +382,12 @@ const Input = ({
                                     height: "auto !important",
                                     padding: "16px 20px !important",
                                 },
+                            ".css-vubbuv": {
+                                fill: "var(--7) !important",
+                                width: "19.21px !important",
+                                height: "19.21px !important",
+                                fontSize: "19.21px !important",
+                            },
                             "& .css-i4bv87-MuiSvgIcon-root": {
                                 fill: "var(--7) !important",
                                 width: "19.21px !important",
