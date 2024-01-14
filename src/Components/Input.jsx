@@ -165,7 +165,7 @@ const Input = ({
                                     },
                                     ".css-rhiqj0.Mui-selected": {
                                         backgroundColor: "var(--1) !important",
-                                        color: "var(--0)",
+                                        color: "var(--0) !important",
                                     },
                                     ".css-innj4t-MuiPickersYear-yearButton.Mui-selected":
                                         {
