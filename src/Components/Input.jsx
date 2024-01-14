@@ -483,6 +483,14 @@ const Input = ({
                                 backgroundColor: "transparent !important",
                                 color: "var(--1) !important",
                             },
+                            "& .css-1km1ehz": {
+                                fontFamily: "League Spartan !important",
+                                fontWeight: "700 !important",
+                                letterSpacing: "-0.25px !important",
+                                lineHeight: "normal !important",
+                                fontSize: "15px !important",
+                                padding: "16px 24px !important",
+                            },
                             "& .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root":
                                 {
                                     fontFamily: "League Spartan !important",
