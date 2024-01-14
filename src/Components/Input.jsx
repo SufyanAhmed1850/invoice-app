@@ -133,6 +133,9 @@ const Input = ({
                                         lineHeight: "normal !important",
                                         fontSize: "15px !important",
                                     },
+                                    ".css-m3ivqp:not(.Mui-selected)": {
+                                        border: "1px solid var(--1)",
+                                    },
                                     ".MuiPickersYear-root .css-innj4t-MuiPickersYear-yearButton":
                                         {
                                             fontFamily:
