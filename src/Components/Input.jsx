@@ -126,6 +126,13 @@ const Input = ({
                                         lineHeight: "normal !important",
                                         fontSize: "15px !important",
                                     },
+                                    ".css-rhiqj0": {
+                                        fontFamily: "League Spartan !important",
+                                        fontWeight: "700 !important",
+                                        letterSpacing: "-0.25px !important",
+                                        lineHeight: "normal !important",
+                                        fontSize: "15px !important",
+                                    },
                                     ".MuiPickersYear-root .css-innj4t-MuiPickersYear-yearButton":
                                         {
                                             fontFamily:
@@ -225,13 +232,6 @@ const Input = ({
                                         color: "var(--8) !important",
                                     },
                                     ".MuiYearCalendar-root": {
-                                        fontFamily: "League Spartan !important",
-                                        fontWeight: "700 !important",
-                                        letterSpacing: "-0.25px !important",
-                                        lineHeight: "normal !important",
-                                        fontSize: "15px !important",
-                                    },
-                                    ".css-rhiqj0": {
                                         fontFamily: "League Spartan !important",
                                         fontWeight: "700 !important",
                                         letterSpacing: "-0.25px !important",
