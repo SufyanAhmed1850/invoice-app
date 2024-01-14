@@ -293,10 +293,17 @@ const Input = ({
                                             fontSize: "15px !important",
                                             color: "var(--8) !important",
                                         },
+                                    ".css-sldnni": {
+                                        fill: "var(--1) !important",
+                                    },
                                     ".css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon":
                                         {
                                             fill: "var(--1) !important",
                                         },
+                                    ".css-1cw4hi4": {
+                                        fill: "var(--1) !important",
+                                        fontSize: "22px !important",
+                                    },
                                     ".css-1vooibu-MuiSvgIcon-root": {
                                         fill: "var(--1) !important",
                                         fontSize: "22px !important",
