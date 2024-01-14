@@ -56,12 +56,10 @@ const DetailedInvoice = () => {
     const deleteInvoice = () => {
         setIsDeleteLoading(true);
         const _id = invoiceDetails?.[invoiceNumber]?._id;
-        console.log(_id);
         axiosPrivate
             .delete(`/invoice/delete/${_id}`)
             .then((response) => {
                 toast.success("Invoice deleted successfully!");
-                console.log(response);
                 if (invoicesOverview?.length == 1) {
                     getInvoicesOverview(currentPage - 1);
                     setCurrentPage((prev) => prev - 1);
@@ -90,7 +88,6 @@ const DetailedInvoice = () => {
             .patch("/invoice/status", { _id })
             .then((response) => {
                 toast.success("Marked as paid successfully!");
-                console.log(response);
                 setInvoiceDetails({
                     ...invoiceDetails,
                     [invoiceNumber]: {
@@ -107,7 +104,6 @@ const DetailedInvoice = () => {
             })
             .finally(() => setIsStatusLoading(false));
     };
-    console.log(invoiceDetails);
 
     return (
         <>
