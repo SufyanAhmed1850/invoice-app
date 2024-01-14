@@ -416,8 +416,15 @@ const Input = ({
                         borderRadius: "4px !important",
                         color: "var(--8) !important",
                         minHeight: "0 !important",
+                        "& .css-qiwgdb.MuiSelect-select": {
+                            minHeight: 0,
+                        },
                         "& .MuiSelect-select": {
                             minHeight: 0,
+                        },
+                        "& .css-qiwgdb": {
+                            padding: "16px 20px !important",
+                            height: "auto !important",
                         },
                         "& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input":
                             {
