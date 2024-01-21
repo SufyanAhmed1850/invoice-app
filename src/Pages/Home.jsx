@@ -34,25 +34,36 @@ const Home = () => {
         setFilterOptions,
         isLoading,
         isFisrstLoading,
+        setIsLoading,
+        setIsFirstLoading,
     } = useContext(invoicesOverviewContext);
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
         setShowInvoicePanel(!showInvoicePanel);
     };
     const isSmallScreen = useMediaQuery({ maxWidth: 400 });
-    const invoiceNumberQuery = searchParams.get("invoiceNumber");
+    let invoiceNumberQuery = searchParams.get("invoiceNumber");
     useEffect(() => {
         if (invoiceNumberQuery) {
             searchInvoice(invoiceNumberQuery);
             axiosPrivate
                 .get(`/search?invoiceNumber=${invoiceNumberQuery}`)
                 .then((response) => {
+                    console.log(response.data);
                     setIsCompanyDetails(response?.data?.company);
-                    setInvoicesOverview([response?.data?.invoice]);
+                    if (response.data.invoice) {
+                        setInvoicesOverview([response.data.invoice]);
+                    } else {
+                        setInvoicesOverview(null);
+                    }
                 })
                 .catch((error) => {
                     console.error(error);
                     return Promise.reject(error);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                    isFisrstLoading && setIsFirstLoading(false);
                 });
         }
     }, [invoiceNumberQuery]);
@@ -63,7 +74,7 @@ const Home = () => {
     const { values, errors, handleChange, handleSubmit, resetForm } = useFormik(
         {
             initialValues: {
-                invoiceNumber: "",
+                invoiceNumber: invoiceNumberQuery || "",
             },
             validationSchema: validationSchema,
             onSubmit: (values, actions) => {
@@ -81,6 +92,7 @@ const Home = () => {
             handleSubmit();
         }
     };
+    console.log();
 
     return (
         <>
@@ -116,10 +128,10 @@ const Home = () => {
                     </div>
                     {isFisrstLoading ? (
                         <div
-                            className="search-invoice"
+                            className="search-invoice skeleton"
                             style={{ marginBottom: 16 }}
                         >
-                            <div className="search-invoice-left">
+                            <div className="search-invoice-left skeleton">
                                 <Skeleton
                                     animation="wave"
                                     variant="rounded"
@@ -134,6 +146,7 @@ const Home = () => {
                                 />
                             </div>
                             <Skeleton
+                                className="search-invoice-right"
                                 animation="wave"
                                 variant="rounded"
                                 width={75}
@@ -171,6 +184,7 @@ const Home = () => {
                                         );
                                     }
                                     setSearchParams("");
+                                    invoiceNumberQuery = "";
                                     resetForm();
                                 }}
                                 className="search-invoice-right"

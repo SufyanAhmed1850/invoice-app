@@ -47,6 +47,7 @@
     font-weight: 700;
     letter-spacing: -0.25px;
 }
+
 .invoice-content h3 {
     text-align: right;
 }
@@ -65,7 +66,7 @@
     color: var(--9);
 }
 
-@media (width <= 980px) {
+@media (width <=980px) {
     .invoice-content {
         grid-template-columns: repeat(5, 1fr);
     }
@@ -77,6 +78,22 @@
 }
 
 @media (max-width: 630px) {
+    .invoice-content-skeleton {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 17px 20px 17px 24px;
+    }
+
+    .invoice-content-skeleton-even {
+        justify-self: end;
+    }
+
+    .invoice-content-skeleton-even:nth-child(4) {
+        grid-row: span 2;
+        align-self: end;
+    }
+
     .invoice-content {
         grid-template-columns: repeat(2, 1fr);
         row-gap: 18px;

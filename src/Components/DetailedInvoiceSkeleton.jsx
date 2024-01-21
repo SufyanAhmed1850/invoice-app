@@ -1,6 +1,8 @@
 import { Skeleton } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 
 const DetailedInvoiceSkeleton = () => {
+    const is630 = useMediaQuery({ maxWidth: 630 });
     return (
         <>
             <div className="invoice-details-crud">
@@ -19,29 +21,31 @@ const DetailedInvoiceSkeleton = () => {
                         height={36}
                     />
                 </div>
-                <div className="invoice-details-edit">
-                    <Skeleton
-                        animation="wave"
-                        variant="rounded"
-                        sx={{ borderRadius: 100 }}
-                        width={72}
-                        height={45}
-                    />
-                    <Skeleton
-                        animation="wave"
-                        variant="rounded"
-                        sx={{ borderRadius: 100 }}
-                        width={88}
-                        height={45}
-                    />
-                    <Skeleton
-                        animation="wave"
-                        variant="rounded"
-                        sx={{ borderRadius: 100 }}
-                        width={132}
-                        height={45}
-                    />
-                </div>
+                {!is630 && (
+                    <div className="invoice-details-edit">
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            sx={{ borderRadius: 100 }}
+                            width={72}
+                            height={45}
+                        />
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            sx={{ borderRadius: 100 }}
+                            width={88}
+                            height={45}
+                        />
+                        <Skeleton
+                            animation="wave"
+                            variant="rounded"
+                            sx={{ borderRadius: 100 }}
+                            width={132}
+                            height={45}
+                        />
+                    </div>
+                )}
             </div>
             <div className="invoice-details">
                 <div className="invoice-details-header">
@@ -264,6 +268,31 @@ const DetailedInvoiceSkeleton = () => {
                     </div>
                 </div>
             </div>
+            {is630 && (
+                <div className="invoice-details-edit-medium">
+                    <Skeleton
+                        sx={{ borderRadius: "50px" }}
+                        animation="wave"
+                        variant="rounded"
+                        width={72}
+                        height={46}
+                    />
+                    <Skeleton
+                        sx={{ borderRadius: "50px" }}
+                        animation="wave"
+                        variant="rounded"
+                        width={90}
+                        height={46}
+                    />
+                    <Skeleton
+                        sx={{ borderRadius: "50px" }}
+                        animation="wave"
+                        variant="rounded"
+                        width={120}
+                        height={46}
+                    />
+                </div>
+            )}
         </>
     );
 };

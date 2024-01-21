@@ -116,6 +116,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
     }, [edit, invoiceDetails?.[invoiceNumber], setFieldValue, isOpen]);
 
     const discardInvoiceData = () => {
+        onClose();
         resetForm();
     };
 

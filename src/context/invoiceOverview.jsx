@@ -84,6 +84,7 @@ export const InvoicesOverviewProvider = ({ children }) => {
                 showAddCompanyDetails,
                 filterOptions,
                 setFilterOptions,
+                setIsFirstLoading,
             }}
         >
             {children}

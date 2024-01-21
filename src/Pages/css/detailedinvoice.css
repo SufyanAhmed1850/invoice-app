@@ -270,6 +270,7 @@
         row-gap: 32px;
     }
     .invoice-details-edit-medium {
+        box-shadow: 0 0px 100px #0000001a;
         width: 100%;
         display: flex;
         align-items: center;

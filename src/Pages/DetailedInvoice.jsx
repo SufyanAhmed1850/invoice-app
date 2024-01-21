@@ -384,7 +384,7 @@ const DetailedInvoice = () => {
                         <h2>Couldn't find #{invoiceNumber}</h2>
                     </div>
                 )}
-                {isMediumScreen && (
+                {!isDetailLoading && isMediumScreen && (
                     <div className="invoice-details-edit-medium">
                         <Button
                             onClick={toggleInvoicePanel}
