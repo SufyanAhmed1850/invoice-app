@@ -1,21 +1,17 @@
 .invoice-status {
+    align-self: end;
+    justify-self: end;
     display: flex;
-    flex: 0.5;
+    min-width: 104px;
     gap: 8px;
     padding: 12px 0;
     justify-content: center;
     align-items: center;
     border-radius: 6px;
-    /* background-color: #33d69f1a; */
 }
 
 .invoice-status .round {
     width: 8px;
     height: 8px;
     border-radius: 100%;
-    /* background-color: #33d69f; */
 }
-
-/* .invoice-status h4 {
-    color: #33d69f;
-} */

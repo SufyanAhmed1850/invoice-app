@@ -94,41 +94,6 @@ input {
     width: 100%;
 }
 
-/* ----- Scrollbar Styles For Firefox ----- */
-* {
-    scrollbar-color: var(--5) transparent;
-    scrollbar-width: thin;
-}
-
-*::-moz-scrollbar {
-    width: 8px;
-}
-
-*::-moz-scrollbar-thumb {
-    background-color: var(--5);
-    border-radius: 4px;
-}
-
-*::-moz-scrollbar-track {
-    background-color: transparent;
-}
-
-/* ----- Scrollbar Styles For Other Browsers ----- */
-*::-webkit-scrollbar-track {
-    border-radius: 4px;
-    background-color: transparent;
-}
-
-*::-webkit-scrollbar {
-    width: 8px;
-    background-color: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: var(--5);
-}
-
 .light-skeleton.css-1hirv1y-MuiSkeleton-root {
     background-color: var(--skeleton-light) !important;
 }
@@ -136,4 +101,36 @@ input {
 /* Toast */
 .go3958317564 {
     margin: 4px 10px 0 10px !important;
+}
+
+@media (hover: hover) {
+    /* ----- Scrollbar Styles For Firefox ----- */
+    * {
+        scrollbar-color: var(--5) transparent;
+        scrollbar-width: thin;
+    }
+    *::-moz-scrollbar {
+        width: 8px;
+    }
+    *::-moz-scrollbar-thumb {
+        background-color: var(--5);
+        border-radius: 4px;
+    }
+    *::-moz-scrollbar-track {
+        background-color: transparent;
+    }
+
+    /* ----- Scrollbar Styles For Other Browsers ----- */
+    *::-webkit-scrollbar-track {
+        border-radius: 4px;
+        background-color: transparent;
+    }
+    *::-webkit-scrollbar {
+        width: 8px;
+        background-color: transparent;
+    }
+    *::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: var(--5);
+    }
 }

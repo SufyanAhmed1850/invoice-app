@@ -9,11 +9,13 @@
     position: fixed;
     left: 0;
     z-index: 100;
+    overflow: hidden;
 }
 
 .side-panel-profile {
-    width: 104px;
-    height: 88px;
+    /* width: 104px;
+    height: 88px; */
+    padding: 24px 32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,4 +44,32 @@
 .side-panel-theme span,
 .side-panel-profile-icon span {
     color: #999999;
+}
+
+@media (width <= 768px) {
+    .side-panel {
+        height: auto;
+        width: 100%;
+        border-radius: 0;
+        display: flex;
+        flex-direction: inherit;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100;
+    }
+    .side-panel-logo img {
+        width: 80px;
+        height: 80px;
+    }
+    .side-panel-profile {
+        padding: 0;
+        margin-right: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
 }

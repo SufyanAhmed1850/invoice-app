@@ -1,5 +1,5 @@
 .invoices-parent {
-    width: 100%;
+    width: 85%;
     max-width: 900px;
     margin: 0 0 0 104px;
     display: flex;
@@ -14,7 +14,6 @@
     gap: 40px;
     position: sticky;
     padding-top: 77px;
-    /* padding-bottom: 32px; */
     margin-bottom: 4px;
     top: 0;
     z-index: 80;
@@ -101,10 +100,44 @@
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
-}
-.search-invoice-right {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: -0.25px;
     color: var(--8);
+}
+
+@media (width <= 768px) {
+    .invoices-parent {
+        width: calc(100% - 44px);
+        max-width: 900px;
+        margin: 36px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .invoice-head-parent {
+        padding-top: 90px;
+        gap: 20px;
+        margin-bottom: 12px;
+    }
+}
+@media (width <= 460px) {
+    .search-invoice-left {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+        gap: 0px;
+    }
+    .search-invoice-left .dropbtn {
+        padding-left: 0;
+    }
+    .search-invoice-right {
+        align-self: flex-end;
+        padding-bottom: 12px;
+    }
+}
+@media (width <= 400px) {
+    .new-invoice-btn-container button {
+        padding: 6px 15px 6px 6px;
+        gap: 8px;
+    }
 }

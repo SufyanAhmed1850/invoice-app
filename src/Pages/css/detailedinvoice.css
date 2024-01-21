@@ -1,5 +1,5 @@
 .invoice-details-parent {
-    width: 100%;
+    width: 85%;
     max-width: 900px;
     margin: 0 0 0 104px;
     padding-top: 77px;
@@ -43,7 +43,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 24px;
 }
 
 .invoice-details span {
@@ -81,12 +81,9 @@
 
 .invoice-details-body {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-}
-
-.invoice-details-body > * {
-    flex: 1;
 }
 
 .invoice-details-client-info p {
@@ -140,6 +137,7 @@
     background-color: var(--13);
     border-radius: 8px;
     overflow: hidden;
+    margin-top: 24px;
 }
 
 .invoice-details-footer-pricing {
@@ -215,4 +213,89 @@
 
 .invoice-details-parent .empty-invoices {
     padding: 0;
+}
+
+.invoice-details-footer-pricing-item .qty,
+.invoice-details-footer-pricing-item .price {
+    color: var(--7);
+}
+
+.invoice-details-footer-pricing-item-name-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.invoice-details-footer-pricing-item-name-mobile .qty-price {
+    color: var(--7);
+}
+
+@media (width <= 768px) {
+    .invoice-details-parent > button {
+        margin-left: 5%;
+    }
+    .invoice-details-parent {
+        width: 100%;
+        margin: 0;
+        padding-top: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .invoice-details-crud {
+        width: 90%;
+    }
+    .invoice-details {
+        width: 90%;
+    }
+}
+@media (width <= 630px) {
+    .invoice-details-footer {
+        margin-top: 14px;
+    }
+    .invoice-details-status {
+        width: 100%;
+        padding: 24px 32px;
+        justify-content: space-between;
+    }
+    .invoice-details-header {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .invoice-details-vendor-info {
+        align-items: flex-start;
+    }
+    .invoice-details-body {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 16px;
+        row-gap: 32px;
+    }
+    .invoice-details-edit-medium {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 56px;
+        background-color: var(--0);
+        padding: 22px 24px;
+        position: sticky;
+        bottom: 0;
+    }
+}
+@media (width <= 530px) {
+    .invoice-details,
+    .invoice-details-status {
+        padding: 24px;
+    }
+    .invoice-details-footer-pricing {
+        padding: 24px;
+        gap: 24px;
+    }
+    .invoice-details-footer-due {
+        background-color: var(--14);
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }

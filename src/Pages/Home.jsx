@@ -14,6 +14,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { axiosPrivate } from "../api/axios";
 import IconClear from "../assets/images/icon-clear.svg";
+import { useMediaQuery } from "react-responsive";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ const Home = () => {
     const toggleInvoicePanel = () => {
         setShowInvoicePanel(!showInvoicePanel);
     };
-
+    const isSmallScreen = useMediaQuery({ maxWidth: 400 });
     const invoiceNumberQuery = searchParams.get("invoiceNumber");
     useEffect(() => {
         if (invoiceNumberQuery) {
@@ -102,7 +103,7 @@ const Home = () => {
                         <div className="new-invoice-btn-container">
                             <Button
                                 disabled={!isCompanyDetails && true}
-                                text="New Invoice"
+                                text={isSmallScreen ? "New" : "New Invoice"}
                                 onClick={toggleInvoicePanel}
                                 img={addInvoiceIcon}
                             />

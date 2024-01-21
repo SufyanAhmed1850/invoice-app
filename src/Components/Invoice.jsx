@@ -7,10 +7,12 @@ import iconArrowRight from "../assets/images/icon-arrow-right.svg";
 import { Skeleton } from "@mui/material";
 import invoicesOverviewContext from "../context/invoiceOverview";
 import { useContext } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {
-    const { isLoading } = useContext(invoicesOverviewContext);
     const navigate = useNavigate();
+    const { isLoading } = useContext(invoicesOverviewContext);
+    const isMediumScreen = useMediaQuery({ maxWidth: 630 });
 
     return (
         <>
@@ -68,9 +70,11 @@ const Invoice = ({ invoiceNumber, status, name, total, dueDate }) => {
                             <h3>$ {total}</h3>
                             <InvoiceStatus status={status} />
                         </div>
-                        <div className="invoice-arrow">
-                            <img src={iconArrowRight} alt="Right Arrow" />
-                        </div>
+                        {!isMediumScreen && (
+                            <div className="invoice-arrow">
+                                <img src={iconArrowRight} alt="Right Arrow" />
+                            </div>
+                        )}
                     </>
                 )}
             </motion.div>

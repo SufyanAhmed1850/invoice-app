@@ -7,10 +7,16 @@
     left: 0;
     border-radius: 0 20px 20px 0;
     z-index: 90;
-    overflow-y: auto;
+    padding-top: 56px;
+}
+
+.invoice-panel-child {
+    height: calc(100% - 110px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-y: auto;
+    margin-right: 24px;
 }
 
 .invoice-panel-background {
@@ -25,15 +31,15 @@
 
 .invoice-panel-main {
     margin-left: 104px;
-    padding: 56px;
-    padding-bottom: 16px;
+    padding: 0 24px 16px 56px;
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
 .invoice-panel-input-4 {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
@@ -74,6 +80,18 @@
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.invoice-panel-items-names-inputs-total {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.invoice-panel-items-names-inputs-total p {
+    padding-bottom: 10px;
+}
+.invoice-panel-items-names-inputs-total h4 {
+    padding: 16px 0;
 }
 
 .invoice-panel-items-names {
@@ -128,4 +146,89 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+@media (width <= 1080px) {
+    .invoice-panel-parent {
+        width: calc(75% + 104px) !important;
+    }
+}
+
+@media (width <= 768px) {
+    .invoice-panel-parent {
+        width: 80% !important;
+        padding-top: 126px;
+    }
+    .invoice-panel-main {
+        margin: 0;
+    }
+    .invoice-panel-buttons {
+        padding: 32px 56px;
+    }
+}
+@media (width <= 580px) {
+    .invoice-panel-parent {
+        width: 80% !important;
+        padding-top: 80px;
+    }
+    .invoice-panel-child {
+        margin-right: 14px;
+    }
+    .invoice-panel-main {
+        padding: 24px;
+    }
+    .invoice-panel-buttons {
+        padding: 24px;
+        margin-top: 40px;
+    }
+}
+
+@media (width <= 540px) {
+    .invoice-panel-parent {
+        width: 100% !important;
+        border-radius: 0;
+    }
+    .invoice-panel-input-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .invoice-panel-input-4 > div:nth-child(3) {
+        grid-column: span 2;
+    }
+    .invoice-panel-input-5 {
+        flex-direction: column;
+    }
+}
+@media (width <= 430px) {
+    .invoice-panel-items-names-inputs-parent {
+        align-items: flex-end;
+    }
+    .invoice-panel-items-names-inputs-parent button {
+        margin-bottom: 8px;
+    }
+    .invoice-panel-items-names-inputs {
+        flex-wrap: wrap;
+    }
+    .invoice-panel-items-names-inputs > *:first-child {
+        flex: auto !important;
+    }
+    .invoice-panel-child {
+        margin-right: 8px;
+    }
+    .invoice-panel-main {
+        padding: 16px 8px 16px 16px;
+    }
+    .invoice-panel-buttons {
+        padding: 24px 14px;
+        margin-top: 32px;
+    }
+    .invoice-panel-buttons button {
+        padding: 18px 16px;
+    }
+}
+
+@media (width <= 430px) {
+    .invoice-panel-buttons button {
+        font-size: 12px !important;
+        line-height: normal !important;
+    }
 }

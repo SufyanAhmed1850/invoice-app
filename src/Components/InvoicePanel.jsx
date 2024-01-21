@@ -350,253 +350,282 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                         }}
                         className="invoice-panel-parent"
                     >
-                        <div className="invoice-panel-main">
-                            <h2>
-                                {edit == "false"
-                                    ? "New Invoice"
-                                    : `Edit #${invoiceNumber}`}
-                            </h2>
-                            <h4 style={{ color: "var(--1)" }}>Bill To</h4>
-                            <div className="invoice-panel-input-1">
-                                <Input
-                                    value={values.clientName}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.clientName}
-                                    touched={touched.clientName}
-                                    id="clientName"
-                                    type="text"
-                                    label="Client’s Name"
-                                />
-                            </div>
-                            <div className="invoice-panel-input-2">
-                                <Input
-                                    value={values.clientEmail}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.clientEmail}
-                                    touched={touched.clientEmail}
-                                    id="clientEmail"
-                                    type="text"
-                                    label="Client’s Email"
-                                />
-                            </div>
-                            <div className="invoice-panel-input-3">
-                                <Input
-                                    value={values.clientAddress}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.clientAddress}
-                                    touched={touched.clientAddress}
-                                    id="clientAddress"
-                                    type="text"
-                                    label="Street Address"
-                                />
-                            </div>
-                            <div className="invoice-panel-input-4">
-                                <Input
-                                    value={values.clientCity}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.clientCity}
-                                    touched={touched.clientCity}
-                                    id="clientCity"
-                                    type="text"
-                                    label="City"
-                                />
-                                <Input
-                                    value={values.clientPostCode}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.clientPostCode}
-                                    touched={touched.clientPostCode}
-                                    id="clientPostCode"
-                                    type="text"
-                                    label="Post Code"
-                                />
-                                <Input
-                                    value={values.clientCountry}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.clientCountry}
-                                    touched={touched.clientCountry}
-                                    id="clientCountry"
-                                    type="text"
-                                    label="Country"
-                                />
-                            </div>
-                            <div className="invoice-panel-input-5">
-                                <Input
-                                    value={values.invoiceDate}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.invoiceDate}
-                                    touched={touched.invoiceDate}
-                                    id="invoiceDate"
-                                    type="text"
-                                    label="Invoice Date"
-                                    setFieldValue={setFieldValue}
-                                />
-                                <Input
-                                    value={values.paymentTerms}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.paymentTerms}
-                                    touched={touched.paymentTerms}
-                                    id="paymentTerms"
-                                    type="text"
-                                    label="Payment Terms"
-                                    setFieldValue={setFieldValue}
-                                />
-                            </div>
-                            <div className="invoice-panel-input-6">
-                                <Input
-                                    value={values.projectDescription}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    error={errors.projectDescription}
-                                    touched={touched.projectDescription}
-                                    id="projectDescription"
-                                    type="text"
-                                    label="Project Description"
-                                />
-                            </div>
-                            <div className="invoice-panel-items-list">
-                                <h4
-                                    style={{
-                                        color: "var(--1)",
-                                        marginBottom: "16px",
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
-                                    Items List
-                                </h4>
-                                <div className="invoice-panel-items-names-body">
-                                    <AnimatePresence>
-                                        {values.items.map((item, index) => (
-                                            <motion.div
-                                                key={index}
-                                                {...(index !== 0 && {
-                                                    initial: {
+                        <div className="invoice-panel-child">
+                            <div className="invoice-panel-main">
+                                <h2>
+                                    {edit == "false"
+                                        ? "New Invoice"
+                                        : `Edit #${invoiceNumber}`}
+                                </h2>
+                                <h4 style={{ color: "var(--1)" }}>Bill To</h4>
+                                <div className="invoice-panel-input-1">
+                                    <Input
+                                        value={values.clientName}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.clientName}
+                                        touched={touched.clientName}
+                                        id="clientName"
+                                        type="text"
+                                        label="Client’s Name"
+                                    />
+                                </div>
+                                <div className="invoice-panel-input-2">
+                                    <Input
+                                        value={values.clientEmail}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.clientEmail}
+                                        touched={touched.clientEmail}
+                                        id="clientEmail"
+                                        type="text"
+                                        label="Client’s Email"
+                                    />
+                                </div>
+                                <div className="invoice-panel-input-3">
+                                    <Input
+                                        value={values.clientAddress}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.clientAddress}
+                                        touched={touched.clientAddress}
+                                        id="clientAddress"
+                                        type="text"
+                                        label="Street Address"
+                                    />
+                                </div>
+                                <div className="invoice-panel-input-4">
+                                    <Input
+                                        value={values.clientCity}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.clientCity}
+                                        touched={touched.clientCity}
+                                        id="clientCity"
+                                        type="text"
+                                        label="City"
+                                    />
+                                    <Input
+                                        value={values.clientPostCode}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.clientPostCode}
+                                        touched={touched.clientPostCode}
+                                        id="clientPostCode"
+                                        type="text"
+                                        label="Post Code"
+                                    />
+                                    <Input
+                                        value={values.clientCountry}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.clientCountry}
+                                        touched={touched.clientCountry}
+                                        id="clientCountry"
+                                        type="text"
+                                        label="Country"
+                                    />
+                                </div>
+                                <div className="invoice-panel-input-5">
+                                    <Input
+                                        value={values.invoiceDate}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.invoiceDate}
+                                        touched={touched.invoiceDate}
+                                        id="invoiceDate"
+                                        type="text"
+                                        label="Invoice Date"
+                                        setFieldValue={setFieldValue}
+                                    />
+                                    <Input
+                                        value={values.paymentTerms}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.paymentTerms}
+                                        touched={touched.paymentTerms}
+                                        id="paymentTerms"
+                                        type="text"
+                                        label="Payment Terms"
+                                        setFieldValue={setFieldValue}
+                                    />
+                                </div>
+                                <div className="invoice-panel-input-6">
+                                    <Input
+                                        value={values.projectDescription}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={errors.projectDescription}
+                                        touched={touched.projectDescription}
+                                        id="projectDescription"
+                                        type="text"
+                                        label="Project Description"
+                                    />
+                                </div>
+                                <div className="invoice-panel-items-list">
+                                    <h4
+                                        style={{
+                                            color: "var(--1)",
+                                            marginBottom: "16px",
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                        }}
+                                    >
+                                        Items List
+                                    </h4>
+                                    <div className="invoice-panel-items-names-body">
+                                        <AnimatePresence>
+                                            {values.items.map((item, index) => (
+                                                <motion.div
+                                                    key={index}
+                                                    {...(index !== 0 && {
+                                                        initial: {
+                                                            opacity: 0,
+                                                            y: -5,
+                                                            height: 0,
+                                                        },
+                                                        animate: {
+                                                            opacity: 1,
+                                                            y: 0,
+                                                            height: "auto",
+                                                        },
+                                                    })}
+                                                    exit={{
                                                         opacity: 0,
                                                         y: -5,
                                                         height: 0,
-                                                    },
-                                                    animate: {
-                                                        opacity: 1,
-                                                        y: 0,
-                                                        height: "auto",
-                                                    },
-                                                })}
-                                                exit={{
-                                                    opacity: 0,
-                                                    y: -5,
-                                                    height: 0,
-                                                }}
-                                                className="invoice-panel-items-names-inputs-parent"
-                                            >
-                                                <div className="invoice-panel-items-names-inputs">
-                                                    <Input
-                                                        flex="2"
-                                                        value={item.itemName}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        error={
-                                                            errors.items?.[
-                                                                index
-                                                            ]?.itemName
-                                                        }
-                                                        touched={
-                                                            touched.items?.[
-                                                                index
-                                                            ]?.itemName
-                                                        }
-                                                        id={`items[${index}].itemName`}
-                                                        type="text"
-                                                        label="Item Name"
-                                                    />
-                                                    <Input
-                                                        flex="1"
-                                                        value={item.qty}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        error={
-                                                            errors.items?.[
-                                                                index
-                                                            ]?.qty
-                                                        }
-                                                        touched={
-                                                            touched.items?.[
-                                                                index
-                                                            ]?.qty
-                                                        }
-                                                        id={`items[${index}].qty`}
-                                                        type="text"
-                                                        label="Qty."
-                                                    />
-                                                    <Input
-                                                        flex="1"
-                                                        value={item.price}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        error={
-                                                            errors.items?.[
-                                                                index
-                                                            ]?.price
-                                                        }
-                                                        touched={
-                                                            touched.items?.[
-                                                                index
-                                                            ]?.price
-                                                        }
-                                                        id={`items[${index}].price`}
-                                                        type="text"
-                                                        label="Price"
-                                                    />
-
-                                                    <h4
-                                                        style={{
-                                                            color: "var(--6)",
-                                                            paddingTop: "22px",
-                                                        }}
-                                                    >
-                                                        {item.qty *
-                                                            item.price || "-"}
-                                                    </h4>
-                                                </div>
-                                                <IconButton
-                                                    onMouseOver={() =>
-                                                        handleMouseOver(index)
-                                                    }
-                                                    onMouseOut={handleMouseOut}
-                                                    className="invoice-panel-items-remove"
-                                                    sx={{
-                                                        marginTop: "22px",
                                                     }}
-                                                    onClick={() =>
-                                                        handleRemoveItem(index)
-                                                    }
+                                                    className="invoice-panel-items-names-inputs-parent"
                                                 >
-                                                    <DeleteIcon
-                                                        fill={
-                                                            index ===
-                                                            hoveredIndex
-                                                                ? "var(--9)"
-                                                                : "#888EB0"
+                                                    <div className="invoice-panel-items-names-inputs">
+                                                        <Input
+                                                            flex="2"
+                                                            value={
+                                                                item.itemName
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            onBlur={handleBlur}
+                                                            error={
+                                                                errors.items?.[
+                                                                    index
+                                                                ]?.itemName
+                                                            }
+                                                            touched={
+                                                                touched.items?.[
+                                                                    index
+                                                                ]?.itemName
+                                                            }
+                                                            id={`items[${index}].itemName`}
+                                                            type="text"
+                                                            label="Item Name"
+                                                        />
+                                                        <Input
+                                                            flex="1"
+                                                            value={item.qty}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            onBlur={handleBlur}
+                                                            error={
+                                                                errors.items?.[
+                                                                    index
+                                                                ]?.qty
+                                                            }
+                                                            touched={
+                                                                touched.items?.[
+                                                                    index
+                                                                ]?.qty
+                                                            }
+                                                            id={`items[${index}].qty`}
+                                                            type="text"
+                                                            label="Qty."
+                                                        />
+                                                        <Input
+                                                            flex="1"
+                                                            value={item.price}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            onBlur={handleBlur}
+                                                            error={
+                                                                errors.items?.[
+                                                                    index
+                                                                ]?.price
+                                                            }
+                                                            touched={
+                                                                touched.items?.[
+                                                                    index
+                                                                ]?.price
+                                                            }
+                                                            id={`items[${index}].price`}
+                                                            type="text"
+                                                            label="Price"
+                                                        />
+                                                        <h4
+                                                            style={{
+                                                                color: "var(--6)",
+                                                                paddingTop:
+                                                                    "22px",
+                                                            }}
+                                                        >
+                                                            {"-" || "-"}
+                                                        </h4>
+                                                        <div className="invoice-panel-items-names-inputs-total">
+                                                            <p
+                                                                style={{
+                                                                    color: "var(--7)",
+                                                                }}
+                                                            >
+                                                                Total
+                                                            </p>
+                                                            <h4>
+                                                                {item.qty *
+                                                                    item.price ||
+                                                                    null}
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                    <IconButton
+                                                        onMouseOver={() =>
+                                                            handleMouseOver(
+                                                                index,
+                                                            )
                                                         }
-                                                    />
-                                                </IconButton>
-                                            </motion.div>
-                                        ))}
-                                    </AnimatePresence>
+                                                        onMouseOut={
+                                                            handleMouseOut
+                                                        }
+                                                        className="invoice-panel-items-remove"
+                                                        sx={{
+                                                            marginTop: "22px",
+                                                        }}
+                                                        onClick={() =>
+                                                            handleRemoveItem(
+                                                                index,
+                                                            )
+                                                        }
+                                                    >
+                                                        <DeleteIcon
+                                                            fill={
+                                                                index ===
+                                                                hoveredIndex
+                                                                    ? "var(--9)"
+                                                                    : "#888EB0"
+                                                            }
+                                                        />
+                                                    </IconButton>
+                                                </motion.div>
+                                            ))}
+                                        </AnimatePresence>
+                                    </div>
+                                    <Button
+                                        text="+ Add New Item"
+                                        bgColor="#f9fafe"
+                                        color="var(--7)"
+                                        onClick={handleAddItem}
+                                    />
                                 </div>
-                                <Button
-                                    text="+ Add New Item"
-                                    bgColor="#f9fafe"
-                                    color="var(--7)"
-                                    onClick={handleAddItem}
-                                />
                             </div>
                         </div>
                         <div className="invoice-panel-buttons">

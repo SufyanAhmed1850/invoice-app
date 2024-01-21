@@ -14,8 +14,11 @@ import InvoicePanel from "../Components/InvoicePanel";
 import { axiosPrivate } from "../api/axios";
 import toast from "react-hot-toast";
 import DetailedInvoiceSkeleton from "../Components/DetailedInvoiceSkeleton";
+import { useMediaQuery } from "react-responsive";
 
 const DetailedInvoice = () => {
+    const isMediumScreen = useMediaQuery({ maxWidth: 630 });
+    const isScreen530 = useMediaQuery({ maxWidth: 530 });
     const [isStatusLoading, setIsStatusLoading] = useState(false);
     const [isDeleteLoading, setIsDeleteLoading] = useState(false);
     const location = useLocation();
@@ -144,33 +147,35 @@ const DetailedInvoice = () => {
                                     }
                                 />
                             </div>
-                            <div className="invoice-details-edit">
-                                <Button
-                                    onClick={toggleInvoicePanel}
-                                    text="Edit"
-                                    bgColor="var(--13)"
-                                    color="var(--7)"
-                                />
-                                <Button
-                                    text="Delete"
-                                    bgColor="var(--9)"
-                                    color="var(--0)"
-                                    onClick={() => setShowDialog(true)}
-                                />
-                                <Button
-                                    loading={isStatusLoading}
-                                    disabled={
-                                        invoiceDetails?.[invoiceNumber]
-                                            ?.status == "Pending"
-                                            ? false
-                                            : true
-                                    }
-                                    onClick={markAsPaid}
-                                    text="Mark as Paid"
-                                    bgColor="var(--1)"
-                                    color="var(--0)"
-                                />
-                            </div>
+                            {!isMediumScreen && (
+                                <div className="invoice-details-edit">
+                                    <Button
+                                        onClick={toggleInvoicePanel}
+                                        text="Edit"
+                                        bgColor="var(--13)"
+                                        color="var(--7)"
+                                    />
+                                    <Button
+                                        text="Delete"
+                                        bgColor="var(--9)"
+                                        color="var(--0)"
+                                        onClick={() => setShowDialog(true)}
+                                    />
+                                    <Button
+                                        loading={isStatusLoading}
+                                        disabled={
+                                            invoiceDetails?.[invoiceNumber]
+                                                ?.status == "Pending"
+                                                ? false
+                                                : true
+                                        }
+                                        onClick={markAsPaid}
+                                        text="Mark as Paid"
+                                        bgColor="var(--1)"
+                                        color="var(--0)"
+                                    />
+                                </div>
+                            )}
                         </div>
                         <div className="invoice-details">
                             <div className="invoice-details-header">
@@ -288,39 +293,83 @@ const DetailedInvoice = () => {
                                 </div>
                             </div>
                             <div className="invoice-details-footer">
-                                <div className="invoice-details-footer-pricing">
-                                    <div className="invoice-details-footer-pricing-header">
-                                        <p></p>
-                                        <p>QTY.</p>
-                                        <p>Price</p>
-                                        <p>Total</p>
-                                    </div>
-                                    {invoiceDetails?.[invoiceNumber] &&
-                                        invoiceDetails?.[
-                                            invoiceNumber
-                                        ]?.items.map((item, ind) => (
-                                            <div
-                                                key={ind}
-                                                className="invoice-details-footer-pricing-item"
-                                            >
-                                                <h4>{item.itemName}</h4>
-                                                <h4 className="qty">
-                                                    {item.qty}
-                                                </h4>
-                                                <h4 className="price">
-                                                    $ {item.price}
-                                                </h4>
-                                                <h4>$ {item.total}</h4>
+                                {!isScreen530 ? (
+                                    <>
+                                        <div className="invoice-details-footer-pricing">
+                                            <div className="invoice-details-footer-pricing-header">
+                                                <p></p>
+                                                <p>QTY.</p>
+                                                <p>Price</p>
+                                                <p>Total</p>
                                             </div>
-                                        ))}
-                                </div>
-                                <div className="invoice-details-footer-due">
-                                    <p>Amount Due</p>
-                                    <h2>
-                                        ${" "}
-                                        {invoiceDetails?.[invoiceNumber]?.total}
-                                    </h2>
-                                </div>
+                                            {invoiceDetails?.[invoiceNumber] &&
+                                                invoiceDetails?.[
+                                                    invoiceNumber
+                                                ]?.items.map((item, ind) => (
+                                                    <div
+                                                        key={ind}
+                                                        className="invoice-details-footer-pricing-item"
+                                                    >
+                                                        <h4>{item.itemName}</h4>
+                                                        <h4 className="qty">
+                                                            {item.qty}
+                                                        </h4>
+                                                        <h4 className="price">
+                                                            $ {item.price}
+                                                        </h4>
+                                                        <h4>$ {item.total}</h4>
+                                                    </div>
+                                                ))}
+                                        </div>
+                                        <div className="invoice-details-footer-due">
+                                            <p>Amount Due</p>
+                                            <h2>
+                                                ${" "}
+                                                {
+                                                    invoiceDetails?.[
+                                                        invoiceNumber
+                                                    ]?.total
+                                                }
+                                            </h2>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="invoice-details-footer-pricing">
+                                            {invoiceDetails?.[invoiceNumber] &&
+                                                invoiceDetails?.[
+                                                    invoiceNumber
+                                                ]?.items.map((item, ind) => (
+                                                    <div
+                                                        key={ind}
+                                                        className="invoice-details-footer-pricing-item"
+                                                    >
+                                                        <div className="invoice-details-footer-pricing-item-name-mobile">
+                                                            <h4>
+                                                                {item.itemName}
+                                                            </h4>
+                                                            <h4 className="qty-price">
+                                                                {item.qty} x ${" "}
+                                                                {item.price}
+                                                            </h4>
+                                                        </div>
+                                                        <h4>$ {item.total}</h4>
+                                                    </div>
+                                                ))}
+                                        </div>
+                                        <div className="invoice-details-footer-due">
+                                            <p>Amount Due</p>
+                                            <h2>
+                                                ${" "}
+                                                {
+                                                    invoiceDetails?.[
+                                                        invoiceNumber
+                                                    ]?.total
+                                                }
+                                            </h2>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </>
@@ -333,6 +382,35 @@ const DetailedInvoice = () => {
                             alt="No Invoices"
                         />
                         <h2>Couldn't find #{invoiceNumber}</h2>
+                    </div>
+                )}
+                {isMediumScreen && (
+                    <div className="invoice-details-edit-medium">
+                        <Button
+                            onClick={toggleInvoicePanel}
+                            text="Edit"
+                            bgColor="var(--13)"
+                            color="var(--7)"
+                        />
+                        <Button
+                            text="Delete"
+                            bgColor="var(--9)"
+                            color="var(--0)"
+                            onClick={() => setShowDialog(true)}
+                        />
+                        <Button
+                            loading={isStatusLoading}
+                            disabled={
+                                invoiceDetails?.[invoiceNumber]?.status ==
+                                "Pending"
+                                    ? false
+                                    : true
+                            }
+                            onClick={markAsPaid}
+                            text="Mark as Paid"
+                            bgColor="var(--1)"
+                            color="var(--0)"
+                        />
                     </div>
                 )}
             </div>

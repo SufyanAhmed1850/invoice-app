@@ -1,5 +1,5 @@
 .company-details-parent {
-    width: 100%;
+    width: 80%;
     max-width: 900px;
     margin: 0 0 0 104px;
     padding-top: 77px;
@@ -55,7 +55,7 @@
     justify-content: flex-end;
     padding: 0 32px 24px 32px;
     background-color: var(--0);
-    border-radius: 0px 0px 8px 8px
+    border-radius: 0px 0px 8px 8px;
 }
 
 .company-details-save-button {
@@ -66,4 +66,21 @@
 
 .company-details-save-button h4 {
     color: var(--0);
+}
+
+@media (width <= 768px) {
+    .company-details-parent {
+        width: 90%;
+        margin: 16px 0 0 0;
+    }
+}
+@media (width <= 530px) {
+    .company-details-main {
+        padding: 32px 32px 24px 32px;
+    }
+}
+@media (width <= 430px) {
+    .company-details-input-3 {
+        flex-direction: column;
+    }
 }
