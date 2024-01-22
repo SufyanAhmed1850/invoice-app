@@ -198,7 +198,7 @@
         flex-direction: column;
     }
 
-    .invoice-panel-main button {
+    .invoice-panel-main > button {
         align-self: flex-start;
         margin-top: -10px;
         margin-bottom: -12px;
