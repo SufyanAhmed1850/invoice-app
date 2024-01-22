@@ -138,10 +138,10 @@ input {
 /* Pagination */
 
 .css-lrb33l {
-    fill: #7c5dfa;
+    fill: #7c5dfa !important;
 }
 
 .css-1xr9krm {
-    font-family: "League Spartan";
-    font-weight: 700;
+    font-family: "League Spartan" !important;
+    font-weight: 700 !important;
 }
