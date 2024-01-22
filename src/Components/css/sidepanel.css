@@ -1,6 +1,6 @@
 .side-panel {
     background-color: #373b53;
-    height: 100svh;
+    height: 100dvh;
     width: 104px;
     border-radius: 0px 20px 20px 0px;
     display: flex;
@@ -13,8 +13,6 @@
 }
 
 .side-panel-profile {
-    /* width: 104px;
-    height: 88px; */
     padding: 24px 32px;
     display: flex;
     justify-content: center;

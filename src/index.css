@@ -45,7 +45,7 @@ body {
 }
 
 #root {
-    height: 100svh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
 }
@@ -133,4 +133,15 @@ input {
         border-radius: 4px;
         background-color: var(--5);
     }
+}
+
+/* Pagination */
+
+.css-lrb33l {
+    fill: #7c5dfa;
+}
+
+.css-1xr9krm {
+    font-family: "League Spartan";
+    font-weight: 700;
 }
