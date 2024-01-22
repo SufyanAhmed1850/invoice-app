@@ -23,6 +23,10 @@
     color: var(--8);
 }
 
+.search-invoice-input input:focus::placeholder {
+    color: var(--6);
+}
+
 .search-invoice-input svg {
     cursor: pointer;
     width: 18px;
