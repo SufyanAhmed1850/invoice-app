@@ -51,6 +51,7 @@
     }
 
     .auth-logo {
-        align-self: flex-start;
+        align-self: center;
+        margin-top: 28px;
     }
 }

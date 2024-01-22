@@ -12,19 +12,12 @@ const SidePanel = () => {
         <AnimatePresence>
             <motion.div
                 key="side-panel"
-                initial={{ x: "-50px", opacity: 0 }}
+                initial={{ opacity: 0 }}
                 animate={{
-                    x: 0,
-                    transition: {
-                        type: "spring",
-                        stiffness: 250,
-                        damping: 40,
-                    },
                     opacity: 1,
                 }}
                 exit={{
                     opacity: 0,
-                    x: "-50px",
                 }}
                 className="side-panel"
             >

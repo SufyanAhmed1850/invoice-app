@@ -241,8 +241,12 @@
         flex-direction: column;
         align-items: center;
     }
+    .invoice-details-parent > button{
+        margin-top: 15px;
+    }
     .invoice-details-crud {
         width: 90%;
+        margin-top: 24px;
     }
     .invoice-details {
         width: 90%;

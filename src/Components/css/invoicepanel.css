@@ -197,6 +197,12 @@
     .invoice-panel-input-5 {
         flex-direction: column;
     }
+
+    .invoice-panel-main button {
+        align-self: flex-start;
+        margin-top: -10px;
+        margin-bottom: -12px;
+    }
 }
 @media (width <= 430px) {
     .invoice-panel-items-names-inputs-parent {

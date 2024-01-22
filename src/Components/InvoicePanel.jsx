@@ -10,18 +10,21 @@ import invoiceDetailsContext from "../context/invoice.jsx";
 import invoicesOverviewContext from "../context/invoiceOverview.jsx";
 import Input from "../Components/Input";
 import DeleteIcon from "../assets/images/DeleteIcon.jsx";
+import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 import Button from "./Button.jsx";
 import toast from "react-hot-toast";
+import { useMediaQuery } from "react-responsive";
 
 const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
+    const showBackButton = useMediaQuery({ maxWidth: 540 });
     const [draftLoading, setDraftLoading] = useState(false);
     const [saveLoading, setSaveLoading] = useState(false);
     const { invoiceDetails, setInvoiceDetails } = useContext(
-        invoiceDetailsContext,
+        invoiceDetailsContext
     );
 
     const { getInvoicesOverview, currentPage, setCurrentPage } = useContext(
-        invoicesOverviewContext,
+        invoicesOverviewContext
     );
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -32,6 +35,13 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
     const handleMouseOut = () => {
         setHoveredIndex(null);
     };
+
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "auto";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isOpen]);
 
     const {
         values,
@@ -97,7 +107,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
             for (const key in invoiceDetails?.[invoiceNumber]) {
                 if (key === "invoiceDate") {
                     const date = dayjs(
-                        invoiceDetails?.[invoiceNumber]?.invoiceDate,
+                        invoiceDetails?.[invoiceNumber]?.invoiceDate
                     );
                     setFieldValue(key, date.isValid() ? date : dayjs());
                 } else {
@@ -109,14 +119,13 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                     "items",
                     invoiceDetails?.[invoiceNumber]?.items.map((item) => ({
                         ...item,
-                    })),
+                    }))
                 );
             }
         }
     }, [edit, invoiceDetails?.[invoiceNumber], setFieldValue, isOpen]);
 
     const discardInvoiceData = () => {
-        onClose();
         resetForm();
     };
 
@@ -353,6 +362,15 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                     >
                         <div className="invoice-panel-child">
                             <div className="invoice-panel-main">
+                                {showBackButton && (
+                                    <Button
+                                        text="Go back"
+                                        color="var(--8)"
+                                        bgColor="transparent"
+                                        img={leftArrowIcon}
+                                        onClick={onClose}
+                                    />
+                                )}
                                 <h2>
                                     {edit == "false"
                                         ? "New Invoice"
@@ -591,7 +609,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                                     <IconButton
                                                         onMouseOver={() =>
                                                             handleMouseOver(
-                                                                index,
+                                                                index
                                                             )
                                                         }
                                                         onMouseOut={
@@ -603,7 +621,7 @@ const InvoicePanel = ({ isOpen, onClose, edit, invoiceNumber }) => {
                                                         }}
                                                         onClick={() =>
                                                             handleRemoveItem(
-                                                                index,
+                                                                index
                                                             )
                                                         }
                                                     >
